@@ -32,5 +32,17 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - AddHealth
+  - DamageGet
+  - DestoryThisObject
+  - Died
+  - DiedAnimator
+  - gunBack
+  - gunHand
+  - OtherGunAudio
+  - RemovePlayerAnimatorsRPC
+  - RemovePlayerPickItem
+  - RemovePlayerShootRPC
+  - ShootAudio
   DisableAutoOpenWizard: 1
   ShowSettings: 1

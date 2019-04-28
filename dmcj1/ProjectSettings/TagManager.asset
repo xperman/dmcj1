@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - buildings
+  - Backpack
+  - Bandage
+  - helmet
+  - Item
+  - akm
+  - scar
+  - sinper
+  - lever
+  - smg
   layers:
   - Default
   - TransparentFX
@@ -17,8 +27,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Items
+  - Guns
   - 
   - 
   - 

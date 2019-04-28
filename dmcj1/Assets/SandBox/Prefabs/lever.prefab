@@ -639,8 +639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: 060626697f611aa43b1625cbbb9c4573, type: 3}
-  - {fileID: 8300000, guid: 2f4be777e8f3f084eb0a57de547fffb5, type: 3}
+  - {fileID: 8300000, guid: 8ac4c2bbebbf31f44af7ce1d5aecc91c, type: 3}
+  - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 3950752894446570843}
   gunAnimator: {fileID: 5614783101636504076}

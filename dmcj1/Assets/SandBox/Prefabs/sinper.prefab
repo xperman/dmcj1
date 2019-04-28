@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e11c4f3ee458bf446918382a2f5f9451, type: 2}
+  - {fileID: 2100000, guid: 1c94b5e8ec3eb8e45afb2faab13037aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1939,8 +1939,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: 1e17205775f81c147a51df8879ab76be, type: 3}
-  - {fileID: 8300000, guid: 2f4be777e8f3f084eb0a57de547fffb5, type: 3}
+  - {fileID: 8300000, guid: 229eeecd47a919e429052d22892b9985, type: 3}
+  - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 3933692345491445199}
   gunAnimator: {fileID: 6575166515817088470}
@@ -3687,7 +3687,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e11c4f3ee458bf446918382a2f5f9451, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
