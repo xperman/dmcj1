@@ -58,7 +58,10 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     //加入一个随机的房间
     public void JoinARoom()
     {
-        PhotonNetwork.JoinRandomRoom();
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
     }
 
     //绑定登陆的按钮

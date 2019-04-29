@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SandBox/Scenes/GameBegin.unity
+    path: Assets/Scenes/GameBegin.unity
     guid: 15feacbf5b1b6f74fad93680059c35af
   - enabled: 1
-    path: Assets/SandBox/Scenes/room1.unity
-    guid: af21e143a06da234a9fce62ff96e256b
+    path: Assets/Scenes/Battleground.unity
+    guid: b932bd4a5a37da1408fcff17372d360f
   m_configObjects: {}

@@ -15,7 +15,6 @@ public class HealthController : MonoBehaviour
     private float resurrectionTime = 5;
     //判断死亡
     private bool dead;
-
     //public:
     //血条
     public Slider bloodSlider;
@@ -36,7 +35,6 @@ public class HealthController : MonoBehaviour
     public Button backGame;
     //返回操作的面板
     public GameObject backPanel;
-
     //复活时间显示文字
     public Text resurrectionText;
     //随机的复活点
