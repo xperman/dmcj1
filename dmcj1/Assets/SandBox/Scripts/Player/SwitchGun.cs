@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SwitchGun : MonoBehaviour
 {
-    private PhotonView pv;
     //远程玩家的枪
     public GameObject[] gunsRemove;
     //远程玩家后背的枪
@@ -13,12 +12,8 @@ public class SwitchGun : MonoBehaviour
     public GameObject[] thrownGuns;
     //当前手中的枪的名字
     public string currentGunName;
-    //枪械UI显示
-    public Image[] gunImage;
     //远程玩家的动画
     public Animator anmRemove;
-    //子弹数量显示
-    public Text bulletsAmountText;
     //目前手中的枪械
     public GameObject currentHandGun;
     //子弹发射点
@@ -34,6 +29,35 @@ public class SwitchGun : MonoBehaviour
     //开火速率
     float lastFired;
 
+    void Start()
+    {
+        isAutomaticFire = false;
+    }
+
+    private void Update()
+    {
+        if (PlayerManager.pv.IsMine)
+        {
+            SwitchTwoGuns();
+            BulletsText();
+            Reload();
+            Attack();
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                //让远程玩家丢掉枪
+                PlayerManager.pv.RPC("ThrowGuns", RpcTarget.AllBuffered, currentHandGun.tag);
+            }
+        }
+    }
+
+    private void GunImageControl()
+    {
+        UIManager.Instance.gunImage[0].gameObject.SetActive(false);
+        UIManager.Instance.gunImage[1].gameObject.SetActive(false);
+        UIManager.Instance.gunImage[2].gameObject.SetActive(false);
+        UIManager.Instance.gunImage[3].gameObject.SetActive(false);
+        UIManager.Instance.gunImage[4].gameObject.SetActive(false);
+    }
     private void SwitchTwoGuns()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && this.GetComponent<PropManagement>().handGun != null && this.GetComponent<PropManagement>().backGun != null)
@@ -43,43 +67,28 @@ public class SwitchGun : MonoBehaviour
             this.GetComponent<PropManagement>().backGun.SetActive(false);
             if (currentHandGun.tag == "sinper")
             {
-                gunImage[0].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[0].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "akm")
             {
-                gunImage[2].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[1].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "scar")
             {
-                gunImage[1].gameObject.SetActive(true);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[2].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "smg")
             {
-                gunImage[4].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[3].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "lever")
             {
-                gunImage[3].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[4].gameObject.SetActive(true);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && this.GetComponent<PropManagement>().handGun != null && this.GetComponent<PropManagement>().backGun != null)
@@ -89,43 +98,28 @@ public class SwitchGun : MonoBehaviour
             this.GetComponent<PropManagement>().backGun.SetActive(true);
             if (currentHandGun.tag == "sinper")
             {
-                gunImage[0].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[0].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "akm")
             {
-                gunImage[2].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[1].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "scar")
             {
-                gunImage[1].gameObject.SetActive(true);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[2].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "smg")
             {
-                gunImage[4].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[3].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[3].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "lever")
             {
-                gunImage[3].gameObject.SetActive(true);
-                gunImage[1].gameObject.SetActive(false);
-                gunImage[2].gameObject.SetActive(false);
-                gunImage[0].gameObject.SetActive(false);
-                gunImage[4].gameObject.SetActive(false);
+                GunImageControl();
+                UIManager.Instance.gunImage[4].gameObject.SetActive(true);
             }
         }
     }
@@ -194,7 +188,7 @@ public class SwitchGun : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player")
             {
                 //调用敌人的减血代码
-                hit.transform.GetComponent<PhotonView>().RPC("DamageGet", RpcTarget.AllBuffered, 10, gameObject.name, hit.point);
+                hit.transform.GetComponent<PhotonView>().RPC("DamageGet", RpcTarget.AllBuffered, 10, hit.point);
                 //生成一个临时弹孔
                 GameObject tempHole = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 //0.3s后销毁弹孔
@@ -299,26 +293,8 @@ public class SwitchGun : MonoBehaviour
                 break;
         }
     }
-    void Start()
-    {
-        pv = this.GetComponent<PhotonView>();
-        isAutomaticFire = false;
-    }
-    private void Update()
-    {
-        if (pv.IsMine)
-        {
-            SwitchTwoGuns();
-            BulletsText();
-            Reload();
-            Attack();
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                //让远程玩家丢掉枪
-                pv.RPC("ThrowGuns", RpcTarget.AllBuffered, currentHandGun.tag);
-            }
-        }
-    }
+
+
     private void Attack()
     {
         if (Input.GetKey(KeyCode.B) && currentHandGun.tag != "lever" && currentHandGun.tag != "sinper")
@@ -343,6 +319,7 @@ public class SwitchGun : MonoBehaviour
             }
         }
     }
+
     //显示当前枪的子弹数
     private void BulletsText()
     {
@@ -351,19 +328,19 @@ public class SwitchGun : MonoBehaviour
             switch (currentHandGun.tag)
             {
                 case "sinper":
-                    bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                     break;
                 case "scar":
-                    bulletsAmountText.text = currentHandGun.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Scar>().scarBullets.ToString() + "/30";
                     break;
                 case "akm":
-                    bulletsAmountText.text = currentHandGun.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Akm>().scarBullets.ToString() + "/30";
                     break;
                 case "smg":
-                    bulletsAmountText.text = currentHandGun.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Smg>().scarBullets.ToString() + "/25";
                     break;
                 case "lever":
-                    bulletsAmountText.text = currentHandGun.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Lever>().scarBullets.ToString() + "/2";
                     break;
             }
         }

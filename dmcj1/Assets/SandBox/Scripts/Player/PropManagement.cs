@@ -7,15 +7,12 @@ using UnityEngine.UI;
 public class PropManagement : MonoBehaviour
 {
     #region private
-    private PhotonView pv;
     //射线发射位置
     private Vector3 rayPos;
     #endregion
     #region public
     //拾取用的摄像机
     public Camera myCamera;
-    //提示信息
-    public Text weaponsText;
     //可拾取枪的集合
     public GameObject[] pickGuns;
     //丢弃的枪
@@ -31,12 +28,12 @@ public class PropManagement : MonoBehaviour
     #endregion
     void Start()
     {
-        pv = this.GetComponent<PhotonView>();
+
     }
 
     private void Update()
     {
-        if (pv.IsMine)
+        if (PlayerManager.pv.IsMine)
         {
             AroundWeapons();
             if (Input.GetKeyDown(KeyCode.G))
@@ -87,35 +84,34 @@ public class PropManagement : MonoBehaviour
         Ray ray = new Ray(rayPos, myCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3, 1 << 13))
         {
-            weaponsText.gameObject.SetActive(true);
+            UIManager.Instance.itemText.gameObject.SetActive(true);
             switch (hit.collider.gameObject.tag)
             {
                 case "sinper":
-                    weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[0], hit.collider.gameObject);
-
                     break;
                 case "scar":
-                    weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[1], hit.collider.gameObject);
                     break;
                 case "akm":
-                    weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[2], hit.collider.gameObject);
                     break;
                 case "smg":
-                    weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[3], hit.collider.gameObject);
                     break;
                 case "lever":
-                    weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[4], hit.collider.gameObject);
                     break;
             }
         }
         else
         {
-            weaponsText.gameObject.SetActive(false);
+            UIManager.Instance.itemText.gameObject.SetActive(false);
         }
     }
     /// <summary>
@@ -139,14 +135,14 @@ public class PropManagement : MonoBehaviour
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;
-                        pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        PlayerManager.pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
                     }
                 }//如果手中和后背都有枪
                 else if (handGun != null && backGun != null)
                 {
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        weaponsText.text = "枪械已满，丢弃多余的枪可以捡起它";
+                        UIManager.Instance.itemText.text = "枪械已满，丢弃多余的枪可以捡起它";
                     }
                 }//如果手中有枪且后背没枪
                 else if (handGun != null && backGun == null)
@@ -159,7 +155,7 @@ public class PropManagement : MonoBehaviour
                         tempGun.SetActive(false);
                         backGun = tempGun;
                         //在远程玩家的后背生成一把额外的枪    
-                        pv.RPC("gunBack", RpcTarget.AllBuffered, tempGun.tag);
+                        PlayerManager.pv.RPC("gunBack", RpcTarget.AllBuffered, tempGun.tag);
                     }
                 }
                 else if (handGun == null && backGun != null)
@@ -171,7 +167,7 @@ public class PropManagement : MonoBehaviour
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;
-                        pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        PlayerManager.pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
                     }
                 }
             }
