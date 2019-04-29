@@ -44,5 +44,7 @@ MonoBehaviour:
   - RemovePlayerPickItem
   - RemovePlayerShootRPC
   - ShootAudio
+  - throwItems
+  - ThrowGuns
   DisableAutoOpenWizard: 1
   ShowSettings: 1

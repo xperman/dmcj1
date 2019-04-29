@@ -35,56 +35,112 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform[] posF;
     public Transform[] posG;
 
+    public Button gameStart;
+    private int areaNum;
+    private Vector3 applyPos;
+    public Text gameTimeDown;
+    private float timeLast = 10;
+    private bool loadPlayer;
+    private PhotonView pv;
+
     void Start()
     {
+        loadPlayer = false;
+        gameStart.enabled = false;
+        pv = this.GetComponent<PhotonView>();
         startPos1.onClick.AddListener(() =>
-        {
-            PhotonNetwork.Instantiate(playerPrefab.name, posA[Random.Range(0, 5)].position, Quaternion.identity, 0);
-            startPos1.GetComponentInChildren<Text>().text = "已选定A区域";
-        });
+                      {
+                          applyPos = posA[Random.Range(0, 5)].position;
+                          areaNum = 1;
+
+                          startPos1.GetComponentInChildren<Text>().text = "已选定A区域";
+                      });
         startPos2.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posB[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posB[Random.Range(0, 5)].position;
+            areaNum = 2;
+
             startPos2.GetComponentInChildren<Text>().text = "已选定B区域";
         });
         startPos3.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posC[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posC[Random.Range(0, 5)].position;
+            areaNum = 3;
+
             startPos3.GetComponentInChildren<Text>().text = "已选定C区域";
         });
         startPos4.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posD[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posD[Random.Range(0, 5)].position;
+            areaNum = 4;
+
             startPos4.GetComponentInChildren<Text>().text = "已选定D区域";
         });
         startPos5.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posE[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posE[Random.Range(0, 5)].position;
+            areaNum = 5;
+
             startPos5.GetComponentInChildren<Text>().text = "已选定E区域";
         });
         startPos6.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posF[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posF[Random.Range(0, 5)].position;
+            areaNum = 6;
+
             startPos6.GetComponentInChildren<Text>().text = "已选定F区域";
         });
         startPos7.onClick.AddListener(() =>
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, posG[Random.Range(0, 5)].position, Quaternion.identity, 0);
+            applyPos = posG[Random.Range(0, 5)].position;
+            areaNum = 7;
+
             startPos7.GetComponentInChildren<Text>().text = "已选定G区域";
         });
     }
     public void InstantiatePlayers()
     {
-        PhotonNetwork.Instantiate(playerPrefab.name, airplane.transform.position, Quaternion.identity, 0);
+        switch (areaNum)
+        {
+            case 1:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 2:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 3:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 4:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 5:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 6:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+            case 7:
+                PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                break;
+        }
+        gameStart.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        timeLast -= Time.deltaTime;
+        gameTimeDown.text = "游戏开始:" + (int)timeLast;
+        while (timeLast <= 0)
+        {
+            gameStart.enabled = true;
+            gameTimeDown.text = "进入游戏";
+            break;
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             map.SetActive(true);
         }
-
     }
     /// <summary>
     /// 玩家离开房间时调用

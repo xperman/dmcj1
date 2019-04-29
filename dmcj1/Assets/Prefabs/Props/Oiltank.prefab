@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2300000}
   m_Layer: 0
   m_Name: model
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4394943183449008}
   m_Layer: 0
   m_Name: Oiltank
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

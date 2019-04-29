@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2300000}
   m_Layer: 0
   m_Name: roof001
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2300002}
   m_Layer: 0
   m_Name: roof
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 6400002}
   m_Layer: 0
   m_Name: house_roof
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 6400000}
   m_Layer: 0
   m_Name: HouseBase
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 2300006}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 23840891814574896}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 4640230295720730}
   m_Layer: 0
   m_Name: WoodDoor
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 82599635600434246}
   m_Layer: 0
   m_Name: House
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 23276821704921880}
   m_Layer: 0
   m_Name: handdle
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 95550035748623034}
   m_Layer: 0
   m_Name: Pivot
-  m_TagString: Untagged
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

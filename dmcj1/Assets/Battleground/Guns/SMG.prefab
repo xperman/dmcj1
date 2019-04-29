@@ -396,6 +396,8 @@ GameObject:
   - component: {fileID: 4243148104774128314}
   - component: {fileID: 4243148104773701271}
   - component: {fileID: 4243148104773701269}
+  - component: {fileID: 2433188895284843267}
+  - component: {fileID: 2218579428190426395}
   m_Layer: 13
   m_Name: SMG
   m_TagString: smg
@@ -452,6 +454,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2433188895284843267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243148104773701274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 2218579428190426395}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2218579428190426395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243148104773701274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66086cf05afb5d244b0b4dbfa2ca9e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4244532030333600996
 GameObject:
   m_ObjectHideFlags: 0

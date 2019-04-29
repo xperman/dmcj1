@@ -18,6 +18,8 @@ public class PropManagement : MonoBehaviour
     public Text weaponsText;
     //可拾取枪的集合
     public GameObject[] pickGuns;
+    //丢弃的枪
+    public GameObject[] throwGuns;
     //枪械的出生位置
     public Transform handGun1;
     //备用的枪的位置
@@ -37,6 +39,43 @@ public class PropManagement : MonoBehaviour
         if (pv.IsMine)
         {
             AroundWeapons();
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                //扔掉本地玩家的枪
+                if (handGun1.GetChild(0).gameObject.activeInHierarchy == true)
+                {
+                    Destroy(handGun1.GetChild(0).gameObject);
+                    ThrowGuns(handGun1.GetChild(0).gameObject.tag);
+                }
+                else if (handGun2.GetChild(0).gameObject.activeInHierarchy == true)
+                {
+                    Destroy(handGun2.GetChild(0).gameObject);
+                    ThrowGuns(handGun2.GetChild(0).gameObject.tag);
+                }
+
+            }
+        }
+    }
+
+    private void ThrowGuns(string name)
+    {
+        switch (name)
+        {
+            case "sinper":
+                Instantiate(throwGuns[0], transform.position, transform.rotation);
+                break;
+            case "akm":
+                Instantiate(throwGuns[2], transform.position, transform.rotation);
+                break;
+            case "scar":
+                Instantiate(throwGuns[1], transform.position, transform.rotation);
+                break;
+            case "smg":
+                Instantiate(throwGuns[4], transform.position, transform.rotation);
+                break;
+            case "lever":
+                Instantiate(throwGuns[3], transform.position, transform.rotation);
+                break;
         }
     }
     /// <summary>
@@ -53,23 +92,24 @@ public class PropManagement : MonoBehaviour
             {
                 case "sinper":
                     weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
-                    PickWeaspon(hit.collider.gameObject.name, pickGuns[0]);
+                    PickWeaspon(hit.collider.gameObject.name, pickGuns[0], hit.collider.gameObject);
+
                     break;
                 case "scar":
                     weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
-                    PickWeaspon(hit.collider.gameObject.name, pickGuns[1]);
+                    PickWeaspon(hit.collider.gameObject.name, pickGuns[1], hit.collider.gameObject);
                     break;
                 case "akm":
                     weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
-                    PickWeaspon(hit.collider.gameObject.name, pickGuns[2]);
+                    PickWeaspon(hit.collider.gameObject.name, pickGuns[2], hit.collider.gameObject);
                     break;
                 case "smg":
                     weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
-                    PickWeaspon(hit.collider.gameObject.name, pickGuns[3]);
+                    PickWeaspon(hit.collider.gameObject.name, pickGuns[3], hit.collider.gameObject);
                     break;
                 case "lever":
                     weaponsText.text = "F 拾取" + hit.collider.gameObject.tag;
-                    PickWeaspon(hit.collider.gameObject.name, pickGuns[4]);
+                    PickWeaspon(hit.collider.gameObject.name, pickGuns[4], hit.collider.gameObject);
                     break;
             }
         }
@@ -83,7 +123,7 @@ public class PropManagement : MonoBehaviour
     /// </summary>
     /// <param name="gunName"></param>
     /// <param name="hitObject"></param>
-    private void PickWeaspon(string gunName, GameObject hitObject)
+    private void PickWeaspon(string gunName, GameObject hitObject, GameObject hit)
     {
         for (int i = 0; i < pickGuns.Length; i++)
         {
@@ -95,11 +135,11 @@ public class PropManagement : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         GameObject tempGun = Instantiate(pickGuns[i], handGun1.position, handGun1.rotation);
+                        hit.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.All);
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;
                         pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
-
                     }
                 }//如果手中和后背都有枪
                 else if (handGun != null && backGun != null)
@@ -114,6 +154,7 @@ public class PropManagement : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         GameObject tempGun = Instantiate(pickGuns[i], handGun2.position, handGun2.rotation);
+                        hit.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.All);
                         tempGun.transform.SetParent(handGun2.transform);
                         tempGun.SetActive(false);
                         backGun = tempGun;
@@ -126,6 +167,7 @@ public class PropManagement : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         GameObject tempGun = Instantiate(pickGuns[i], handGun1.position, handGun1.rotation);
+                        hit.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.All);
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;

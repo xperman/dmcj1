@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6400000}
   m_Layer: 0
   m_Name: model
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4860628058265234}
   m_Layer: 0
   m_Name: Straw
-  m_TagString: Finish
+  m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

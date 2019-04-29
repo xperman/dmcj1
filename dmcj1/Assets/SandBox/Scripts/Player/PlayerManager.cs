@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     public Behaviour[] scriptsController;
     #endregion
     void Start()
-    {
+    {      
         pv = this.GetComponent<PhotonView>();
         if (pv.IsMine)
         {
