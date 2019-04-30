@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 7176005928247246600}
   - component: {fileID: 188045785373393260}
   - component: {fileID: 4963633489572534688}
+  - component: {fileID: 6286941238002942519}
   m_Layer: 0
   m_Name: PlayerInBattle
   m_TagString: Player
@@ -233,14 +234,7 @@ MonoBehaviour:
   - {fileID: 2586115940748366420, guid: 4d7b9b3424c0a4b4fbcc2c471e0481e2, type: 3}
   - {fileID: 4243148104773701274, guid: 6e7862183b88f5b4caa613a04f9cf3c8, type: 3}
   currentGunName: 
-  gunImage:
-  - {fileID: 7656475271056021179}
-  - {fileID: 4337888519677841100}
-  - {fileID: 6230741293646793502}
-  - {fileID: 2741452895249433527}
-  - {fileID: 3066337877297788259}
   anmRemove: {fileID: 727512915354956680}
-  bulletsAmountText: {fileID: 7251704801839954682}
   currentHandGun: {fileID: 0}
   rayStartPosition: {x: 0, y: 0, z: 0}
   myCamera: {fileID: 1438440012399739792}
@@ -375,24 +369,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5cf8e08f9f8a9488c013b16ff9d6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSlider: {fileID: 5889469233642856101}
-  canvas: {fileID: 4858340685801932762}
-  aimCanvas: {fileID: 8593025557175665355}
   blood: {fileID: 100000, guid: 4c467f85f6b21f54c835a7a5f4fb1d8f, type: 3}
-  damageDisplay: {fileID: 7176775491978207969}
-  diedView: {fileID: 4704353020673152280}
   stopBehaviour:
   - {fileID: 11400000}
   - {fileID: 2774441419916690896}
   - {fileID: 3220353393191782107}
-  backLobby: {fileID: 6376567126743377887}
-  backGame: {fileID: 5781576789578617673}
-  backPanel: {fileID: 6805907370838042307}
-  resurrectionText: {fileID: 7265843243232004939}
   resurrectionPositions: {x: 0, y: 0, z: 0}
   attackScript: {fileID: 3220353393191782107}
   viewScript: {fileID: 2567731966352477565}
-  aimImage: {fileID: 8349987561960430756}
   aimCamera: {fileID: 1438440012399739792}
   diedAudio: {fileID: 8300000, guid: 18b5c1952c41a8d49a393664038c26cb, type: 3}
   humanAudio: {fileID: 8200000}
@@ -408,10 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6338ba4b7cbe6940b0e7128198bbf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bandageText: {fileID: 1628562103910866822}
-  drinkText: {fileID: 7641106142634075246}
   myCamera: {fileID: 3032959757635081687}
-  itemText: {fileID: 1901693934568267571}
   helmet: {fileID: 4207934969416374290}
   armor: {fileID: 3505695396996594441}
   backpack: {fileID: 690255027892705927}
@@ -446,7 +427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   f_UpdateInterval: 0.5
-  FPSText: {fileID: 6800556884925607403}
 --- !u!114 &4963633489572534688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 3032959757635081687}
-  weaponsText: {fileID: 1901693934568267571}
   pickGuns:
   - {fileID: 6575166515824522840, guid: 5fce5d37c3f91f8438dd89abf6b40df8, type: 3}
   - {fileID: 1615209385079388655, guid: c3b2fae6756157144b0a9ecbb8dd5e54, type: 3}
@@ -477,6 +456,46 @@ MonoBehaviour:
   handGun2: {fileID: 2480367448695632565}
   handGun: {fileID: 0}
   backGun: {fileID: 0}
+--- !u!114 &6286941238002942519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911ee11dd1d71d34e8566ec6f3e58939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunImage:
+  - {fileID: 7656475271056021179}
+  - {fileID: 6230741293646793502}
+  - {fileID: 4337888519677841100}
+  - {fileID: 3066337877297788259}
+  - {fileID: 2741452895249433527}
+  bulletsAmountText: {fileID: 7251704801839954682}
+  itemText: {fileID: 1901693934568267571}
+  fpsText: {fileID: 6800556884925607403}
+  bandageAmountText: {fileID: 1628562103910866822}
+  drinkAmountText: {fileID: 7641106142634075246}
+  healthSlider: {fileID: 5889469233642856101}
+  backLobby: {fileID: 6376567126743377887}
+  backGame: {fileID: 5781576789578617673}
+  backPanel: {fileID: 6805907370838042307}
+  resurrectionText: {fileID: 7265843243232004939}
+  aimImage: {fileID: 8349987561960430756}
+  backpackPanel: {fileID: 683294904}
+  useBandageButton: {fileID: 7469673599926740760}
+  useFirstAidButton: {fileID: 0}
+  useDrinkButton: {fileID: 6437707493322993779}
+  useItemTimeText: {fileID: 4357711460766396652}
+  useItemImage: {fileID: 1480009154946292395}
+  otherPlayerCanvas:
+  - {fileID: 8593025557175665355}
+  - {fileID: 4858340685801932762}
+  deadPanel: {fileID: 4704353020673152280}
+  damagePanel: {fileID: 7176775491978207969}
 --- !u!1 &683294904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8650,7 +8669,7 @@ GameObject:
   - component: {fileID: 8117530335263041149}
   - component: {fileID: 7251704801839954682}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Current Bullets Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9033,7 +9052,7 @@ GameObject:
   - component: {fileID: 663102834311934818}
   - component: {fileID: 1480009154946292395}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Use Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

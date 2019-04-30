@@ -9,7 +9,6 @@ public class OtherSeting : MonoBehaviour
     private float f_LastInterval;
     private int i_Frames = 0;
     private float f_Fps;
-    public Text FPSText;
 
     void Start()
     {
@@ -27,6 +26,6 @@ public class OtherSeting : MonoBehaviour
             i_Frames = 0;
             f_LastInterval = Time.realtimeSinceStartup;
         }
-        FPSText.text = "FPS : " + ((int)f_Fps).ToString();
+        UIManager.Instance.fpsText.text = "fps : " + ((int)f_Fps).ToString();
     }
 }

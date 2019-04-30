@@ -8,13 +8,9 @@ using UnityEngine.UI;
 
 public class SimpleMove : MonoBehaviourPun
 {
-    #region private
-    private PhotonView pv;
-    #endregion
     #region public
     //远程玩家眼里的完整模型
     public Animator anmRemove;
-
     public Animator[] anmGuns;
     //最大跳跃力
     public float maxJumpForce;
@@ -22,13 +18,9 @@ public class SimpleMove : MonoBehaviourPun
     public float walkMaxSpeed;
     #endregion
 
-    void Start()
-    {
-        pv = this.GetComponent<PhotonView>();
-    }
     public void Update()
     {
-        if (pv.IsMine)
+        if (PlayerManager.pv.IsMine)
         {
             RoleJump();
             RoleCharacterControl();

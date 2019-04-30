@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
     //玩家出生点随机
     public Transform[] spawnPositions;
-    //飞机
-    public GameObject airplane;
     //飞机进场位置
     public Transform airplaneStartPos;
     //地图
@@ -40,21 +38,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     private Vector3 applyPos;
     public Text gameTimeDown;
     private float timeLast = 10;
-    private bool loadPlayer;
-    private PhotonView pv;
 
     void Start()
     {
-        loadPlayer = false;
         gameStart.enabled = false;
-        pv = this.GetComponent<PhotonView>();
         startPos1.onClick.AddListener(() =>
-                      {
-                          applyPos = posA[Random.Range(0, 5)].position;
-                          areaNum = 1;
-
-                          startPos1.GetComponentInChildren<Text>().text = "已选定A区域";
-                      });
+        {
+            applyPos = posA[Random.Range(0, 5)].position;
+            areaNum = 1;
+            startPos1.GetComponentInChildren<Text>().text = "已选定A区域";
+        });
         startPos2.onClick.AddListener(() =>
         {
             applyPos = posB[Random.Range(0, 5)].position;

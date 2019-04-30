@@ -6,7 +6,7 @@ using Photon.Pun;
 public class PlayerManager : MonoBehaviour
 {
     #region private
-    private static PhotonView pv;
+    public static PhotonView pv;
     #endregion
     #region public
     //自己看不见的对象
