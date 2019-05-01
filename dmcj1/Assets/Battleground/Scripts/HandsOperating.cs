@@ -17,7 +17,16 @@ public class HandsOperating : MonoBehaviour
     private bool gun1State; //判断1号位是否有枪
     private bool gun2State; //判断1号位是否有枪
     private PhotonView pv;
-
+    public Animator myAnimator;
+    //远程玩家的枪
+    public GameObject[] gunRemove;
+    private float lastFired;
+    public float fireRate;
+    private bool isAutoFire = false;
+    private bool clickGo = true;
+    public GameObject bulletHole;
+    //可丢弃的枪
+    public GameObject[] throwGuns;
 
     private void Start()
     {
@@ -38,6 +47,7 @@ public class HandsOperating : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hit, 3, 1 << 12))
                 {
                     PickItems(hit.collider.gameObject.tag);
+                    hit.collider.gameObject.GetComponent<CanPickObject>().DestoryThisObject();
                 }
             }
             if (Input.GetKeyDown(KeyCode.R))
@@ -51,8 +61,58 @@ public class HandsOperating : MonoBehaviour
         }
     }
 
-
-
+    [PunRPC]
+    private void RemovePlayerPick(string name)
+    {
+        switch (name)
+        {
+            case "AK47":
+                {
+                    gunRemove[2].SetActive(true);
+                    gunRemove[0].SetActive(false);
+                    gunRemove[1].SetActive(false);
+                    gunRemove[3].SetActive(false);
+                    gunRemove[4].SetActive(false);
+                }
+                break;
+            case "M4A1":
+                {
+                    gunRemove[1].SetActive(true);
+                    gunRemove[0].SetActive(false);
+                    gunRemove[2].SetActive(false);
+                    gunRemove[3].SetActive(false);
+                    gunRemove[4].SetActive(false);
+                }
+                break;
+            case "Barrett":
+                {
+                    gunRemove[0].SetActive(true);
+                    gunRemove[1].SetActive(false);
+                    gunRemove[2].SetActive(false);
+                    gunRemove[3].SetActive(false);
+                    gunRemove[4].SetActive(false);
+                }
+                break;
+            case "SMG":
+                {
+                    gunRemove[3].SetActive(true);
+                    gunRemove[0].SetActive(false);
+                    gunRemove[1].SetActive(false);
+                    gunRemove[2].SetActive(false);
+                    gunRemove[4].SetActive(false);
+                }
+                break;
+            case "Shotgun":
+                {
+                    gunRemove[4].SetActive(true);
+                    gunRemove[0].SetActive(false);
+                    gunRemove[1].SetActive(false);
+                    gunRemove[2].SetActive(false);
+                    gunRemove[3].SetActive(false);
+                }
+                break;
+        }
+    }
     //拾取枪
     private void PickItems(string itemName)
     {
@@ -68,6 +128,8 @@ public class HandsOperating : MonoBehaviour
                     items[i].SetActive(true);
                     gun1State = true; //此时1号位有一把枪
                     GunImageControl(itemName);
+                    pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, itemName);
+                    this.GetComponent<UIManager>().isAuto.gameObject.SetActive(true);
                     Debug.Log("萝卜");
                 }
                 else if (gun1State == true && gun2State == false)
@@ -179,6 +241,7 @@ public class HandsOperating : MonoBehaviour
                 handgun1.GetChild(0).gameObject.SetActive(true);
                 handgun2.GetChild(0).gameObject.SetActive(false);
                 GunImageControl(handgun1.GetChild(0).gameObject.tag);
+                pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
             }
         }
         if (inputManager.GetInput(KeyCode.Alpha2))
@@ -188,13 +251,11 @@ public class HandsOperating : MonoBehaviour
                 handgun1.GetChild(0).gameObject.SetActive(false);
                 handgun2.GetChild(0).gameObject.SetActive(true);
                 GunImageControl(handgun2.GetChild(0).gameObject.tag);
+                pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
             }
         }
     }
-
-    private float lastFired;
-    public float fireRate;
-
+    //射击
     private void Shoot()
     {
         //单发模式
@@ -202,17 +263,12 @@ public class HandsOperating : MonoBehaviour
         {
             AppleShoot();
         }
-        if (Input.GetMouseButtonUp(0) && !isAutoFire)
-        {
-            Debug.Log("停止射击");
-        }
         //全自动模式
         if (Input.GetMouseButton(0) && isAutoFire == true)
         {
             if (Time.time - lastFired > 1 / fireRate)
             {
                 AppleShoot();
-
                 lastFired = Time.time;
             }
         }
@@ -221,7 +277,7 @@ public class HandsOperating : MonoBehaviour
             Debug.Log("Not");
         }
     }
-
+    //实现射击
     private void AppleShoot()
     {
         if (handgun1.childCount != 0 || handgun2.childCount != 0)
@@ -234,7 +290,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
-                        ShootRay();
+                        ShootRay(100);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
@@ -243,7 +299,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
-                        ShootRay();
+                        ShootRay(100);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
@@ -252,7 +308,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
-                        ShootRay();
+                        ShootRay(1000);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
@@ -262,7 +318,7 @@ public class HandsOperating : MonoBehaviour
                         Debug.Log("here!!!!!");
                         handgun1.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
-                        ShootRay();
+                        ShootRay(5);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
@@ -271,7 +327,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
-                        ShootRay();
+                        ShootRay(10);
                     }
                 }
             }
@@ -283,7 +339,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
-                        ShootRay();
+                        ShootRay(100);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
@@ -292,7 +348,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
-                        ShootRay();
+                        ShootRay(100);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
@@ -301,7 +357,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
-                        ShootRay();
+                        ShootRay(1000);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
@@ -310,7 +366,7 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
-                        ShootRay();
+                        ShootRay(5);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
@@ -319,18 +375,19 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
-                        ShootRay();
+                        ShootRay(10);
                     }
                 }
             }
         }
 
     }
-    private void ShootRay()
+    //子弹射线
+    private void ShootRay(float distance)
     {
-        rayPos = myCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+        rayPos = myCamera.ViewportToWorldPoint(new Vector3(0.5f, Random.Range(0.5f, 1.0f), 0.0f));
         Ray ray = new Ray(rayPos, myCamera.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000))
+        if (Physics.Raycast(ray, out RaycastHit hit, distance))
         {
             //如果击中敌人
             if (hit.collider.gameObject.tag == "Player")
@@ -351,10 +408,7 @@ public class HandsOperating : MonoBehaviour
             }
         }
     }
-    private bool isAutoFire = false;
-    private bool clickGo = true;
-    public GameObject bulletHole;
-
+    //开火模式
     private void AutoFireControl()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -364,16 +418,18 @@ public class HandsOperating : MonoBehaviour
                 isAutoFire = true;
                 clickGo = false;
                 Debug.Log("自动");
+                this.GetComponent<UIManager>().isAuto.text = "自动";
             }
             else
             {
                 isAutoFire = false;
                 clickGo = true;
                 Debug.Log("单点");
+                this.GetComponent<UIManager>().isAuto.text = "单发";
             }
         }
     }
-
+    //重新装弹
     private void Reload()
     {
         if (handgun1.childCount != 0 || handgun2.childCount != 0)
@@ -383,47 +439,80 @@ public class HandsOperating : MonoBehaviour
                 if (handgun1.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Akm>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Scar>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Lever>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Smg>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
                 }
+                //myAnimator.SetTrigger("Reload");
             }
             else if (handgun2.GetChild(0).gameObject.activeInHierarchy == true)
             {
                 if (handgun2.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Akm>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Scar>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Lever>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/3";
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Smg>().Reload();
+                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
                 }
             }
+        }
+    }
+
+    private void ThrowGuns(string name)
+    {
+        switch (name)
+        {
+            case "AK47":
+                PhotonNetwork.Instantiate(throwGuns[2].name, transform.position, Quaternion.identity);
+                break;
+            case "Barrett":
+                PhotonNetwork.Instantiate(throwGuns[0].name, transform.position, Quaternion.identity);
+                break;
+            case "Shotgun":
+                PhotonNetwork.Instantiate(throwGuns[4].name, transform.position, Quaternion.identity);
+                break;
+            case "M4A1":
+                PhotonNetwork.Instantiate(throwGuns[1].name, transform.position, Quaternion.identity);
+                break;
+            case "SMG":
+                PhotonNetwork.Instantiate(throwGuns[3].name, transform.position, Quaternion.identity);
+                break;
         }
     }
 }

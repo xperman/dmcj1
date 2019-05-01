@@ -14,6 +14,7 @@ public class Lever : MonoBehaviour
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;
     public Animator gunAnimator;
+    public Animator gunAnimatorRemove;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +44,14 @@ public class Lever : MonoBehaviour
             scarSource.clip = scarAudioClips[0];
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
+            gunAnimatorRemove.SetTrigger("Shoot");
         }
     }
 
     public void Reload()
     {
         gunAnimator.SetTrigger("Reload");
+        gunAnimatorRemove.SetTrigger("Reload");
         bulletsAmount = 2;
         
         scarSource.clip = scarAudioClips[2];

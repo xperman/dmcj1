@@ -27,6 +27,10 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     //是否允许创建房间
     private bool isAllowCreatARoom;
 
+    public Animator matchInformation;
+
+    public AudioSource click;
+ 
     //called once on game begin
     private void Start()
     {
@@ -76,6 +80,9 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
     {
         debugLog.text += "加入随机房间失败 : " + message;
         Debug.Log("加入随机房间失败 : " + message);
+        matchInformation.SetBool("display", true);
+        StartCoroutine("HideMatchInfromation");
+        click.Play();
     }
 
     //成功创建房间时调用
@@ -113,5 +120,11 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
         int number = PhotonNetwork.PlayerList.Length;
         Debug.Log("此房间内的玩家人数  ： " + number);
         debugLog.text += "此房间内的玩家人数  ： " + number;
+    }
+
+    IEnumerator HideMatchInfromation()
+    {
+        yield return new WaitForSeconds(2f);
+        matchInformation.SetBool("display", false);
     }
 }

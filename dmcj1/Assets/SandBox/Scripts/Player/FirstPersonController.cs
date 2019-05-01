@@ -37,10 +37,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private PhotonView pv;
 
         // Use this for initialization
         private void Start()
         {
+            pv = this.GetComponent<PhotonView>();
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -146,11 +148,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_NextStep = m_StepCycle + m_StepInterval;
 
-            PlayFootStepAudio();
-
+            //PlayFootStepAudio();
+            pv.RPC("PlayFootStepAudio", RpcTarget.AllBuffered);
         }
 
-        
+        [PunRPC]
         private void PlayFootStepAudio()
         {
             if (!m_CharacterController.isGrounded)

@@ -14,6 +14,8 @@ public class Sinper : MonoBehaviour
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;
     public Animator gunAnimator;
+    public Animator gunAnimatorRemove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +43,14 @@ public class Sinper : MonoBehaviour
             scarSource.clip = scarAudioClips[0];
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
+            gunAnimatorRemove.SetTrigger("Shoot");
         }
     }
 
     public void Reload()
     {
         gunAnimator.SetTrigger("Reload");
+        gunAnimatorRemove.SetTrigger("Reload");
         bulletsAmount = 5;
         scarSource.clip = scarAudioClips[2];
         scarSource.Play();

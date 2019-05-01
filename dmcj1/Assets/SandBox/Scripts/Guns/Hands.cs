@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hands : MonoBehaviour
 {
     private Animator handAnimator;
-
+    public Animator gunAnimatorRemove;
     void Start()
     {
         handAnimator = this.GetComponent<Animator>();

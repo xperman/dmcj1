@@ -68,4 +68,7 @@ public class UIManager : MonoBehaviour
     //被攻击提示
     [Header("被攻击提示")]
     public GameObject damagePanel;
+    //是否全自动开火
+    [Header("开火模式")]
+    public Text isAuto;
 }

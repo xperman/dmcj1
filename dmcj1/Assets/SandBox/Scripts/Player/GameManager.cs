@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Button startPos5;
     public Button startPos6;
     public Button startPos7;
-
+    public Button hideMap;
+    public Button displayMap;
     public Transform[] posA;
     public Transform[] posB;
     public Transform[] posC;
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private Vector3 applyPos;
     public Text gameTimeDown;
     private float timeLast = 3;
-
+    public Animator mapAnimator;
     void Start()
     {
         gameStart.enabled = false;
@@ -90,6 +91,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             startPos7.GetComponentInChildren<Text>().text = "已选定G区域";
         });
+        hideMap.onClick.AddListener(() =>
+        {
+            mapAnimator.SetBool("Hide", true);
+            hideMap.gameObject.SetActive(false);
+            displayMap.gameObject.SetActive(true);
+        });
+
+        displayMap.onClick.AddListener(() =>
+        {
+            mapAnimator.SetBool("Hide", false); displayMap.gameObject.SetActive(false);
+            hideMap.gameObject.SetActive(true);
+        });
     }
     public void InstantiatePlayers()
     {
@@ -128,6 +141,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             gameStart.enabled = true;
             gameTimeDown.text = "进入游戏";
+            gameTimeDown.GetComponent<Animator>().SetBool("enter", true);
             break;
         }
         if (Input.GetKeyDown(KeyCode.M))

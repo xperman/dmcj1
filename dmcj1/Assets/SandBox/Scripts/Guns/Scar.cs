@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class Scar : MonoBehaviour
 {
     //30发子弹
@@ -14,16 +14,18 @@ public class Scar : MonoBehaviour
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;
     public Animator gunAnimator;
+    public Animator gunAnimatorRemove;
+    public PhotonView pv;
     // Start is called before the first frame update
     void Start()
     {
         isShoot = true;
     }
-   
+
     // Update is called once per frame
     void Update()
     {
-      
+
     }
 
     public void useBullets()
@@ -32,23 +34,43 @@ public class Scar : MonoBehaviour
         if (bulletsAmount <= 0)
         {
             isShoot = false;
-            scarSource.clip = scarAudioClips[1];
-            scarSource.Play();
+            pv.RPC("PlayAudio", RpcTarget.AllBuffered, 0);
         }
         else
         {
             bulletsAmount--;
-            scarSource.clip = scarAudioClips[0];
-            scarSource.Play();
+            pv.RPC("PlayAudio", RpcTarget.AllBuffered, 1);
             gunAnimator.SetTrigger("Shoot");
+            gunAnimatorRemove.SetTrigger("Shoot");
         }
     }
 
     public void Reload()
     {
         gunAnimator.SetTrigger("Reload");
+        gunAnimatorRemove.SetTrigger("Reload");
         bulletsAmount = 30;
-        scarSource.clip = scarAudioClips[2];
-        scarSource.Play();
+        pv.RPC("PlayAudio", RpcTarget.AllBuffered, 2);
+    }
+
+    [PunRPC]
+    public void PlayAudio(int state)
+    {
+        if (state == 0)
+        {
+            scarSource.clip = scarAudioClips[1];
+            scarSource.Play();
+        }
+        else if (state == 1)
+        {
+
+            scarSource.clip = scarAudioClips[0];
+            scarSource.Play();
+        }
+        else if (state == 2)
+        {
+            scarSource.clip = scarAudioClips[2];
+            scarSource.Play();
+        }
     }
 }

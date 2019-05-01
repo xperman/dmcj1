@@ -46,5 +46,8 @@ MonoBehaviour:
   - ShootAudio
   - throwItems
   - ThrowGuns
+  - RemovePlayerPick
+  - PlayFootStepAudio
+  - PlayAudio
   DisableAutoOpenWizard: 1
   ShowSettings: 1
