@@ -28,6 +28,8 @@ public class HandsOperating : MonoBehaviour
     //可丢弃的枪
     public GameObject[] throwGuns;
 
+    public GameObject handsMelle;
+
     private void Start()
     {
         gun1State = false;
@@ -50,6 +52,22 @@ public class HandsOperating : MonoBehaviour
                     hit.collider.gameObject.GetComponent<CanPickObject>().DestoryThisObject();
                 }
             }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (handgun1.childCount != 0 || handgun2.childCount != 0)
+                {
+                    if (handgun1.GetChild(0).gameObject.activeInHierarchy == true)
+                    {
+                        handgun1.GetChild(0).gameObject.SetActive(false);
+                        handsMelle.SetActive(true);
+                    }
+                    else if (handgun2.GetChild(0).gameObject.activeInHierarchy == true)
+                    {
+                        handgun2.GetChild(0).gameObject.SetActive(false);
+                        handsMelle.SetActive(true);
+                    }
+                }
+            }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Reload();
@@ -58,6 +76,7 @@ public class HandsOperating : MonoBehaviour
             SwitchGuns();
             AutoFireControl();
             Shoot();
+            OpenDoor();
         }
     }
 
@@ -130,6 +149,8 @@ public class HandsOperating : MonoBehaviour
                     GunImageControl(itemName);
                     pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, itemName);
                     this.GetComponent<UIManager>().isAuto.gameObject.SetActive(true);
+                    handsMelle.SetActive(false); //关闭手
+                    this.GetComponent<UIManager>().bulletsAmountText.gameObject.SetActive(true);
                     Debug.Log("萝卜");
                 }
                 else if (gun1State == true && gun2State == false)
@@ -241,6 +262,7 @@ public class HandsOperating : MonoBehaviour
                 handgun1.GetChild(0).gameObject.SetActive(true);
                 handgun2.GetChild(0).gameObject.SetActive(false);
                 GunImageControl(handgun1.GetChild(0).gameObject.tag);
+                handsMelle.SetActive(false);
                 pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
             }
         }
@@ -251,6 +273,7 @@ public class HandsOperating : MonoBehaviour
                 handgun1.GetChild(0).gameObject.SetActive(false);
                 handgun2.GetChild(0).gameObject.SetActive(true);
                 GunImageControl(handgun2.GetChild(0).gameObject.tag);
+                handsMelle.SetActive(false);
                 pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
             }
         }
@@ -291,6 +314,7 @@ public class HandsOperating : MonoBehaviour
                         handgun1.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
                         ShootRay(100);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
@@ -300,6 +324,7 @@ public class HandsOperating : MonoBehaviour
                         handgun1.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
                         ShootRay(100);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
@@ -309,6 +334,7 @@ public class HandsOperating : MonoBehaviour
                         handgun1.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                         ShootRay(1000);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
@@ -319,6 +345,7 @@ public class HandsOperating : MonoBehaviour
                         handgun1.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
                         ShootRay(5);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
@@ -327,7 +354,8 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
-                        ShootRay(10);
+                        ShootRay(50);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
             }
@@ -340,6 +368,7 @@ public class HandsOperating : MonoBehaviour
                         handgun2.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
                         ShootRay(100);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
@@ -349,6 +378,7 @@ public class HandsOperating : MonoBehaviour
                         handgun2.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
                         ShootRay(100);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
@@ -358,6 +388,7 @@ public class HandsOperating : MonoBehaviour
                         handgun2.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                         ShootRay(1000);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
@@ -367,6 +398,7 @@ public class HandsOperating : MonoBehaviour
                         handgun2.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
                         ShootRay(5);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
@@ -375,7 +407,8 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
                         this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
-                        ShootRay(10);
+                        ShootRay(50);
+                        pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
             }
@@ -405,6 +438,22 @@ public class HandsOperating : MonoBehaviour
                 //生成一个临时弹孔
                 GameObject tempHole = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 Destroy(tempHole, 0.3f);
+            }
+        }
+    }
+
+    private void OpenDoor()
+    {
+        rayPos = myCamera.ViewportToWorldPoint(new Vector3(0.5f, Random.Range(0.5f, 1.0f), 0.0f));
+        Ray ray = new Ray(rayPos, myCamera.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 2))
+        {
+            if (hit.collider.gameObject.tag == "door")
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    hit.collider.gameObject.GetComponent<PhotonView>().RPC("Open", RpcTarget.AllBuffered);
+                }
             }
         }
     }
@@ -515,4 +564,30 @@ public class HandsOperating : MonoBehaviour
                 break;
         }
     }
+
+    public GameObject[] audioBied;
+
+    [PunRPC]
+    public void ShootRemove(string name)
+    {
+        switch (name)
+        {
+            case "AK47":
+                Instantiate(audioBied[2], this.transform.position, Quaternion.identity);
+                break;
+            case "Barrett":
+                Instantiate(audioBied[0], this.transform.position, Quaternion.identity);
+                break;
+            case "Shotgun":
+                Instantiate(audioBied[4], this.transform.position, Quaternion.identity);
+                break;
+            case "M4A1":
+                Instantiate(audioBied[1], this.transform.position, Quaternion.identity);
+                break;
+            case "SMG":
+                Instantiate(audioBied[3], this.transform.position, Quaternion.identity);
+                break;
+        }
+    }
+
 }

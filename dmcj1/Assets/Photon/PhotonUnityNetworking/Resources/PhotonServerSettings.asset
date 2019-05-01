@@ -49,5 +49,7 @@ MonoBehaviour:
   - RemovePlayerPick
   - PlayFootStepAudio
   - PlayAudio
+  - Open
+  - ShootRemove
   DisableAutoOpenWizard: 1
   ShowSettings: 1

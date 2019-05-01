@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 3
-  m_RunSpeed: 20
+  m_RunSpeed: 8
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 5
   m_StickToGroundForce: 10
@@ -339,11 +339,12 @@ MonoBehaviour:
   - {fileID: 2774441419916690896}
   - {fileID: 7777714987183421470}
   resurrectionPositions: {x: 0, y: 0, z: 0}
-  attackScript: {fileID: 0}
+  attackScript: {fileID: 7777714987183421470}
   viewScript: {fileID: 2567731966352477565}
   aimCamera: {fileID: 1438440012399739792}
   diedAudio: {fileID: 8300000, guid: 18b5c1952c41a8d49a393664038c26cb, type: 3}
   humanAudio: {fileID: 8200000}
+  removePlayerAnimator: {fileID: 727512915354956680}
 --- !u!114 &39782949243808331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +473,13 @@ MonoBehaviour:
   - {fileID: 5088261713271159891, guid: 6356562111b98454a87fcc844c6180a7, type: 3}
   - {fileID: 4243148104773701274, guid: 6e7862183b88f5b4caa613a04f9cf3c8, type: 3}
   - {fileID: 2586115940748366420, guid: 4d7b9b3424c0a4b4fbcc2c471e0481e2, type: 3}
+  handsMelle: {fileID: 3363008111942595107}
+  audioBied:
+  - {fileID: 8087234260297986617, guid: 6096e0a4e8923124287529cebf2fde93, type: 3}
+  - {fileID: 1506464743681346557, guid: e43a723155525f1408a9aaedd5316d00, type: 3}
+  - {fileID: 7319415899706577788, guid: d8cdd779f528ec849b1ea15628e31384, type: 3}
+  - {fileID: 5923573577827506296, guid: 24f77bfb724a3b14b80811278e0b709e, type: 3}
+  - {fileID: 1797525670716480982, guid: bb55c4f3d79d36f4787d40970d25ff70, type: 3}
 --- !u!114 &8420331794234960568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4174,7 +4182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4182,7 +4190,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -4194,7 +4202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD4\u56DE\u5927\u5385"
+  m_Text: Back Lobby
 --- !u!1 &689346625863371307
 GameObject:
   m_ObjectHideFlags: 0
@@ -5871,7 +5879,7 @@ Transform:
   m_GameObject: {fileID: 813709472506562644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.55, z: -0.395}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 811675359743285926}
   - {fileID: 811402991038123898}
@@ -5965,6 +5973,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: Falling
+  - Type: 4
+    SynchronizeType: 1
+    Name: Died
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -6629,14 +6640,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.34901962}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12348,14 +12359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.34901962}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14108,7 +14119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3363008111942901251
 Transform:
   m_ObjectHideFlags: 0
@@ -16510,7 +16521,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 954746d370bc8934299c8c8267543f4f, type: 3}
     m_FontSize: 101
     m_FontStyle: 0
     m_BestFit: 0
@@ -19711,7 +19722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: b7f34295132dc2f46884a9150bd38fc6, type: 3}
+  - {fileID: 8300000, guid: 1e17205775f81c147a51df8879ab76be, type: 3}
   - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 4461271470915201872}
@@ -21141,7 +21152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -21149,7 +21160,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -21161,7 +21172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD4\u56DE\u6E38\u620F"
+  m_Text: Back Game
 --- !u!1 &4650891528727767357
 GameObject:
   m_ObjectHideFlags: 0
@@ -21458,7 +21469,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -22080,7 +22091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6188734372387543096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.108, y: 3.449, z: 0}
+  m_LocalPosition: {x: 0.108, y: 5.43, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3032959757636701707}
@@ -24819,7 +24830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: b7f34295132dc2f46884a9150bd38fc6, type: 3}
+  - {fileID: 8300000, guid: 82c1690eab338074facb0e756b02ee16, type: 3}
   - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 6275855065162036345}
@@ -25870,7 +25881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2149889815816737055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25919,7 +25930,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -25931,7 +25942,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5/30
+  m_Text: 0/30
 --- !u!1 &6693316162006352588
 GameObject:
   m_ObjectHideFlags: 0
@@ -26146,14 +26157,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26513,7 +26524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7506056378585808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26713,7 +26724,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
     m_FontSize: 63
     m_FontStyle: 0
     m_BestFit: 0
@@ -26725,7 +26736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F60\u6B7B\u4E86"
+  m_Text: You Died
 --- !u!1 &7176775491978207969
 GameObject:
   m_ObjectHideFlags: 0
@@ -27031,6 +27042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2159539572687694662}
   - component: {fileID: 1438440012399739792}
+  - component: {fileID: 6915115667767618410}
   m_Layer: 0
   m_Name: Ray Camera
   m_TagString: Untagged
@@ -27094,6 +27106,102 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!82 &6915115667767618410
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7582323832862602220}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7614473531452384764
 GameObject:
   m_ObjectHideFlags: 0
@@ -31188,7 +31296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: b7f34295132dc2f46884a9150bd38fc6, type: 3}
+  - {fileID: 8300000, guid: f2e4ffc88ccbdcc49a8249924343767c, type: 3}
   - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 8517138000488530361}
@@ -35688,7 +35796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scarAudioClips:
-  - {fileID: 8300000, guid: b7f34295132dc2f46884a9150bd38fc6, type: 3}
+  - {fileID: 8300000, guid: 8ac4c2bbebbf31f44af7ce1d5aecc91c, type: 3}
   - {fileID: 8300000, guid: d1ba0dc2b3f884f4a894d7a7023e9224, type: 3}
   - {fileID: 8300000, guid: bd785190e3aa86343a400d74ffcb0b5f, type: 3}
   scarSource: {fileID: 9187881577816868679}

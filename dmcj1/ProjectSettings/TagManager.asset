@@ -17,6 +17,7 @@ TagManager:
   - Pistol
   - SMG
   - SandEagle
+  - door
   layers:
   - Default
   - TransparentFX

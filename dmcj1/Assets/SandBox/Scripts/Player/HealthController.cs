@@ -31,6 +31,7 @@ public class HealthController : MonoBehaviour
     public AudioClip diedAudio;
     public AudioSource humanAudio;
     private PhotonView pv;
+    public Animator removePlayerAnimator;
 
 
     private void Start()
@@ -105,9 +106,10 @@ public class HealthController : MonoBehaviour
                 //关闭死亡提示面板
                 this.GetComponent<UIManager>().deadPanel.gameObject.SetActive(false);
                 //重生重新计时
-                resurrectionTime = 5f;
+                resurrectionTime = 6f;
                 //恢复生命值
                 pv.RPC("AddHealth", RpcTarget.AllBuffered, 100);
+                removePlayerAnimator.SetBool("Died", false);
                 //解除玩家的操作
                 for (int i = 0; i < stopBehaviour.Length; i++)
                 {
@@ -146,6 +148,7 @@ public class HealthController : MonoBehaviour
     public void Died()
     {
         this.GetComponent<UIManager>().deadPanel.gameObject.SetActive(true);
+       
         //玩家死亡
         dead = true;
         //禁止玩家的一些操作
@@ -158,7 +161,7 @@ public class HealthController : MonoBehaviour
     [PunRPC]
     public void DiedAnimator()
     {
-
+        removePlayerAnimator.SetBool("Died", true);
         humanAudio.clip = diedAudio;
         humanAudio.Play();
     }

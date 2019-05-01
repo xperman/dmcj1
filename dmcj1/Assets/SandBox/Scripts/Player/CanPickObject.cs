@@ -7,19 +7,25 @@ public class CanPickObject : MonoBehaviour, IPunObservable
 {
     //是否被销毁
     private bool isHide;
+    private PhotonView pv;
 
     private void Start()
     {
         //否
         isHide = false;
+        pv = this.GetComponent<PhotonView>();
     }
     private void Update()
     {
-        //如果是被销毁，再场景中销毁
-        if(isHide==true)
+        if (pv.IsMine)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            //如果是被销毁，再场景中销毁
+            if (isHide == true)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+            }
         }
+
     }
 
     [PunRPC]
