@@ -16,11 +16,16 @@ public class SimpleMove : MonoBehaviourPun
     public float maxJumpForce;
     //角色最大行进速度
     public float walkMaxSpeed;
+    private PhotonView pv;
     #endregion
 
+    private void Start()
+    {
+        pv = this.GetComponent<PhotonView>();
+    }
     public void Update()
     {
-        if (PlayerManager.pv.IsMine)
+        if (pv.IsMine)
         {
             RoleJump();
             RoleCharacterControl();

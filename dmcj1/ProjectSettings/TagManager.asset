@@ -14,6 +14,14 @@ TagManager:
   - sinper
   - lever
   - smg
+  - hands
+  - AK47
+  - Barrett
+  - Shotgun
+  - M4A1
+  - Pistol
+  - SMG
+  - SandEagle
   layers:
   - Default
   - TransparentFX

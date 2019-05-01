@@ -23,6 +23,7 @@ public class Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     public void useBullets()
@@ -37,6 +38,8 @@ public class Lever : MonoBehaviour
         else
         {
             bulletsAmount--;
+            
+            
             scarSource.clip = scarAudioClips[0];
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
@@ -47,6 +50,7 @@ public class Lever : MonoBehaviour
     {
         gunAnimator.SetTrigger("Reload");
         bulletsAmount = 2;
+        
         scarSource.clip = scarAudioClips[2];
         scarSource.Play();
     }

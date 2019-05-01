@@ -26,6 +26,6 @@ public class OtherSeting : MonoBehaviour
             i_Frames = 0;
             f_LastInterval = Time.realtimeSinceStartup;
         }
-        UIManager.Instance.fpsText.text = "fps : " + ((int)f_Fps).ToString();
+        this.GetComponent<UIManager>().fpsText.text = "fps : " + ((int)f_Fps).ToString();
     }
 }

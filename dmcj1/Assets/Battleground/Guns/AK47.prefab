@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5083822398762649363}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: muzzleFX
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 5088261713270726769}
   - component: {fileID: 5088261713267826769}
   - component: {fileID: 5088261713268957841}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,9 +121,9 @@ GameObject:
   - component: {fileID: 5088261713271159888}
   - component: {fileID: 910684811099644750}
   - component: {fileID: 7861115201934504642}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: AK47
-  m_TagString: akm
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 910684811099644750}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!1 &5088261713271159893
 GameObject:
@@ -223,9 +223,9 @@ GameObject:
   - component: {fileID: 5088261713270726773}
   - component: {fileID: 5088261713267826773}
   - component: {fileID: 5088261713268957845}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: clip
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,9 +300,9 @@ GameObject:
   - component: {fileID: 5088261713270726775}
   - component: {fileID: 5088261713267826775}
   - component: {fileID: 5088261713268957847}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,9 +377,9 @@ GameObject:
   - component: {fileID: 5088261713270726777}
   - component: {fileID: 5088261713267826783}
   - component: {fileID: 5088261713268957855}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -454,9 +454,9 @@ GameObject:
   - component: {fileID: 5088261713270726781}
   - component: {fileID: 5088261713267826771}
   - component: {fileID: 5088261713268957843}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,9 +531,9 @@ GameObject:
   - component: {fileID: 5088261713270726783}
   - component: {fileID: 5088261713267826781}
   - component: {fileID: 5088261713268957853}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: AK47
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private int areaNum;
     private Vector3 applyPos;
     public Text gameTimeDown;
-    private float timeLast = 10;
+    private float timeLast = 3;
 
     void Start()
     {

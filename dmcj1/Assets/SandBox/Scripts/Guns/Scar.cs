@@ -19,10 +19,11 @@ public class Scar : MonoBehaviour
     {
         isShoot = true;
     }
-
+   
     // Update is called once per frame
     void Update()
     {
+      
     }
 
     public void useBullets()

@@ -18,11 +18,13 @@ public class Smg : MonoBehaviour
     void Start()
     {
         isShoot = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+       
     }
 
     public void useBullets()
@@ -36,6 +38,7 @@ public class Smg : MonoBehaviour
         else
         {
             bulletsAmount--;
+                 
             scarSource.clip = scarAudioClips[0];
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
@@ -46,6 +49,7 @@ public class Smg : MonoBehaviour
     {
         gunAnimator.SetTrigger("Reload");
         bulletsAmount = 25;
+       
         scarSource.clip = scarAudioClips[2];
         scarSource.Play();
     }
