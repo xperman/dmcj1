@@ -28,15 +28,16 @@ public class SwitchGun : MonoBehaviour
     public float fireRate;
     //开火速率
     float lastFired;
-
+    private PhotonView pv;
     void Start()
     {
         isAutomaticFire = false;
+        pv = this.GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        if (PlayerManager.pv.IsMine)
+        if (pv.IsMine)
         {
             SwitchTwoGuns();
             BulletsText();
@@ -45,18 +46,18 @@ public class SwitchGun : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G))
             {
                 //让远程玩家丢掉枪
-                PlayerManager.pv.RPC("ThrowGuns", RpcTarget.AllBuffered, currentHandGun.tag);
+               pv.RPC("ThrowGuns", RpcTarget.AllBuffered, currentHandGun.tag);
             }
         }
     }
 
     private void GunImageControl()
     {
-        UIManager.Instance.gunImage[0].gameObject.SetActive(false);
-        UIManager.Instance.gunImage[1].gameObject.SetActive(false);
-        UIManager.Instance.gunImage[2].gameObject.SetActive(false);
-        UIManager.Instance.gunImage[3].gameObject.SetActive(false);
-        UIManager.Instance.gunImage[4].gameObject.SetActive(false);
+        this.GetComponent<UIManager>().gunImage[0].gameObject.SetActive(false);
+        this.GetComponent<UIManager>().gunImage[1].gameObject.SetActive(false);
+        this.GetComponent<UIManager>().gunImage[2].gameObject.SetActive(false);
+        this.GetComponent<UIManager>().gunImage[3].gameObject.SetActive(false);
+        this.GetComponent<UIManager>().gunImage[4].gameObject.SetActive(false);
     }
     private void SwitchTwoGuns()
     {
@@ -68,27 +69,27 @@ public class SwitchGun : MonoBehaviour
             if (currentHandGun.tag == "sinper")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[0].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[0].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "akm")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[1].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[1].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "scar")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[2].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[2].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "smg")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[3].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[3].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "lever")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[4].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[4].gameObject.SetActive(true);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && this.GetComponent<PropManagement>().handGun != null && this.GetComponent<PropManagement>().backGun != null)
@@ -99,27 +100,27 @@ public class SwitchGun : MonoBehaviour
             if (currentHandGun.tag == "sinper")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[0].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[0].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "akm")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[1].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[1].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "scar")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[2].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[2].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "smg")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[3].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[3].gameObject.SetActive(true);
             }
             else if (currentHandGun.tag == "lever")
             {
                 GunImageControl();
-                UIManager.Instance.gunImage[4].gameObject.SetActive(true);
+                this.GetComponent<UIManager>().gunImage[4].gameObject.SetActive(true);
             }
         }
     }
@@ -163,6 +164,9 @@ public class SwitchGun : MonoBehaviour
                     VirtualRay();
                 }
                 break;
+            case "hands":
+                currentHandGun.GetComponent<Hands>().Attack();
+                    break;
         }
     }
 
@@ -328,19 +332,19 @@ public class SwitchGun : MonoBehaviour
             switch (currentHandGun.tag)
             {
                 case "sinper":
-                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().scarBullets.ToString() + "/5";
                     break;
                 case "scar":
-                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Scar>().scarBullets.ToString() + "/30";
                     break;
                 case "akm":
-                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Akm>().scarBullets.ToString() + "/30";
                     break;
                 case "smg":
-                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Smg>().scarBullets.ToString() + "/25";
                     break;
                 case "lever":
-                    UIManager.Instance.bulletsAmountText.text = currentHandGun.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Lever>().scarBullets.ToString() + "/2";
                     break;
             }
         }

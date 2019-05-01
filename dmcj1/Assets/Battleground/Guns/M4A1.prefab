@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3538464771215099742}
   - component: {fileID: 3538464771218524028}
   - component: {fileID: 3538464771217524156}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 3538464771215099714}
   - component: {fileID: 3538464771218524000}
   - component: {fileID: 3538464771217524128}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,9 +165,9 @@ GameObject:
   - component: {fileID: 3538464771215099716}
   - component: {fileID: 3538464771218524002}
   - component: {fileID: 3538464771217524130}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,9 +244,9 @@ GameObject:
   - component: {fileID: 3538464771215268721}
   - component: {fileID: 2873047450864200842}
   - component: {fileID: 1648949421218342160}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: M4A1
-  m_TagString: scar
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 2873047450864200842}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!1 &3538464771215268722
 GameObject:
@@ -350,9 +350,9 @@ GameObject:
   - component: {fileID: 3538464771215099730}
   - component: {fileID: 3538464771218524016}
   - component: {fileID: 3538464771217524144}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -427,9 +427,9 @@ GameObject:
   - component: {fileID: 3538464771215099732}
   - component: {fileID: 3538464771218524018}
   - component: {fileID: 3538464771217524146}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,9 +504,9 @@ GameObject:
   - component: {fileID: 3538464771215099734}
   - component: {fileID: 3538464771218524020}
   - component: {fileID: 3538464771217524148}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -581,9 +581,9 @@ GameObject:
   - component: {fileID: 3538464771215099736}
   - component: {fileID: 3538464771218524022}
   - component: {fileID: 3538464771217524150}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -658,9 +658,9 @@ GameObject:
   - component: {fileID: 3538464771215099738}
   - component: {fileID: 3538464771218524024}
   - component: {fileID: 3538464771217524152}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -735,9 +735,9 @@ GameObject:
   - component: {fileID: 3538464771215099740}
   - component: {fileID: 3538464771218524026}
   - component: {fileID: 3538464771217524154}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: clip
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -812,9 +812,9 @@ GameObject:
   - component: {fileID: 3538464771215099712}
   - component: {fileID: 3538464771218524030}
   - component: {fileID: 3538464771217524158}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -887,9 +887,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3533953084381363306}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: muzzleFX
-  m_TagString: Untagged
+  m_TagString: M4A1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

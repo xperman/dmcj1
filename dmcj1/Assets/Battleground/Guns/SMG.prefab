@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4243148104774128304}
   - component: {fileID: 4243148104772833936}
   - component: {fileID: 4243148104771702864}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 4243148104774128306}
   - component: {fileID: 4243148104772833938}
   - component: {fileID: 4243148104771702866}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,9 +165,9 @@ GameObject:
   - component: {fileID: 4243148104774128308}
   - component: {fileID: 4243148104772833940}
   - component: {fileID: 4243148104771702868}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: clip
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,9 +242,9 @@ GameObject:
   - component: {fileID: 4243148104774128310}
   - component: {fileID: 4243148104772833942}
   - component: {fileID: 4243148104771702872}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,9 +319,9 @@ GameObject:
   - component: {fileID: 4243148104774128312}
   - component: {fileID: 4243148104772833944}
   - component: {fileID: 4243148104771702870}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,9 +398,9 @@ GameObject:
   - component: {fileID: 4243148104773701269}
   - component: {fileID: 2433188895284843267}
   - component: {fileID: 2218579428190426395}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: SMG
-  m_TagString: smg
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 2218579428190426395}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 15
   isRuntimeInstantiated: 0
 --- !u!114 &2218579428190426395
 MonoBehaviour:
@@ -497,9 +497,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4246168683287864784}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: muzzlefx
-  m_TagString: Untagged
+  m_TagString: SMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7186515501754565504}
   - component: {fileID: 7186515501753762720}
   - component: {fileID: 7186515501752664416}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 7186515501754565506}
   - component: {fileID: 7186515501753762722}
   - component: {fileID: 7186515501752664418}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,9 +165,9 @@ GameObject:
   - component: {fileID: 7186515501754565508}
   - component: {fileID: 7186515501753762724}
   - component: {fileID: 7186515501752664420}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,9 +242,9 @@ GameObject:
   - component: {fileID: 7186515501754565510}
   - component: {fileID: 7186515501753762726}
   - component: {fileID: 7186515501752664422}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,9 +319,9 @@ GameObject:
   - component: {fileID: 7186515501754565512}
   - component: {fileID: 7186515501753762728}
   - component: {fileID: 7186515501752664424}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +396,9 @@ GameObject:
   - component: {fileID: 7186515501754565514}
   - component: {fileID: 7186515501753762730}
   - component: {fileID: 7186515501752664426}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,9 +473,9 @@ GameObject:
   - component: {fileID: 7186515501754565516}
   - component: {fileID: 7186515501753762732}
   - component: {fileID: 7186515501752664428}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,9 +550,9 @@ GameObject:
   - component: {fileID: 7186515501754565518}
   - component: {fileID: 7186515501753762734}
   - component: {fileID: 7186515501752664430}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,9 +629,9 @@ GameObject:
   - component: {fileID: 7186515501754671037}
   - component: {fileID: 629665320293609345}
   - component: {fileID: 5942788908560834459}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Sinper
-  m_TagString: sinper
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 629665320293609345}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 26
   isRuntimeInstantiated: 0
 --- !u!1 &7186997302336766568
 GameObject:
@@ -731,9 +731,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7184473804779980058}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: muzzlefx
-  m_TagString: Untagged
+  m_TagString: Barrett
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

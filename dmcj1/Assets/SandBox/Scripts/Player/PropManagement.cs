@@ -25,15 +25,19 @@ public class PropManagement : MonoBehaviour
     public GameObject handGun = null;
     //备用的枪
     public GameObject backGun = null;
+    //徒手
+    public GameObject hands;
+    private PhotonView pv;
     #endregion
     void Start()
     {
-
+        handGun = hands;
+        pv = this.GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        if (PlayerManager.pv.IsMine)
+        if (pv.IsMine)
         {
             AroundWeapons();
             if (Input.GetKeyDown(KeyCode.G))
@@ -49,7 +53,6 @@ public class PropManagement : MonoBehaviour
                     Destroy(handGun2.GetChild(0).gameObject);
                     ThrowGuns(handGun2.GetChild(0).gameObject.tag);
                 }
-
             }
         }
     }
@@ -60,18 +63,23 @@ public class PropManagement : MonoBehaviour
         {
             case "sinper":
                 Instantiate(throwGuns[0], transform.position, transform.rotation);
+                hands.SetActive(true);
                 break;
             case "akm":
                 Instantiate(throwGuns[2], transform.position, transform.rotation);
+                hands.SetActive(true);
                 break;
             case "scar":
                 Instantiate(throwGuns[1], transform.position, transform.rotation);
+                hands.SetActive(true);
                 break;
             case "smg":
                 Instantiate(throwGuns[4], transform.position, transform.rotation);
+                hands.SetActive(true);
                 break;
             case "lever":
                 Instantiate(throwGuns[3], transform.position, transform.rotation);
+                hands.SetActive(true);
                 break;
         }
     }
@@ -84,34 +92,34 @@ public class PropManagement : MonoBehaviour
         Ray ray = new Ray(rayPos, myCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3, 1 << 13))
         {
-            UIManager.Instance.itemText.gameObject.SetActive(true);
+            this.GetComponent<UIManager>().itemText.gameObject.SetActive(true);
             switch (hit.collider.gameObject.tag)
             {
                 case "sinper":
-                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    this.GetComponent<UIManager>().itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[0], hit.collider.gameObject);
                     break;
                 case "scar":
-                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    this.GetComponent<UIManager>().itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[1], hit.collider.gameObject);
                     break;
                 case "akm":
-                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    this.GetComponent<UIManager>().itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[2], hit.collider.gameObject);
                     break;
                 case "smg":
-                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    this.GetComponent<UIManager>().itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[3], hit.collider.gameObject);
                     break;
                 case "lever":
-                    UIManager.Instance.itemText.text = "F 拾取" + hit.collider.gameObject.tag;
+                    this.GetComponent<UIManager>().itemText.text = "F 拾取" + hit.collider.gameObject.tag;
                     PickWeaspon(hit.collider.gameObject.name, pickGuns[4], hit.collider.gameObject);
                     break;
             }
         }
         else
         {
-            UIManager.Instance.itemText.gameObject.SetActive(false);
+            this.GetComponent<UIManager>().itemText.gameObject.SetActive(false);
         }
     }
     /// <summary>
@@ -135,14 +143,16 @@ public class PropManagement : MonoBehaviour
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;
-                        PlayerManager.pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        this.GetComponent<UIManager>().bulletsAmountText.gameObject.SetActive(true);
+                        hands.SetActive(false); //关闭手
                     }
                 }//如果手中和后背都有枪
                 else if (handGun != null && backGun != null)
                 {
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        UIManager.Instance.itemText.text = "枪械已满，丢弃多余的枪可以捡起它";
+                        this.GetComponent<UIManager>().itemText.text = "枪械已满，丢弃多余的枪可以捡起它";
                     }
                 }//如果手中有枪且后背没枪
                 else if (handGun != null && backGun == null)
@@ -155,7 +165,7 @@ public class PropManagement : MonoBehaviour
                         tempGun.SetActive(false);
                         backGun = tempGun;
                         //在远程玩家的后背生成一把额外的枪    
-                        PlayerManager.pv.RPC("gunBack", RpcTarget.AllBuffered, tempGun.tag);
+                        pv.RPC("gunBack", RpcTarget.AllBuffered, tempGun.tag);
                     }
                 }
                 else if (handGun == null && backGun != null)
@@ -167,7 +177,9 @@ public class PropManagement : MonoBehaviour
                         tempGun.transform.SetParent(handGun1.transform);
                         tempGun.SetActive(true);
                         handGun = tempGun;
-                        PlayerManager.pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        pv.RPC("gunHand", RpcTarget.AllBuffered, tempGun.tag);
+                        this.GetComponent<UIManager>().bulletsAmountText.gameObject.SetActive(true);
+                        hands.SetActive(false);
                     }
                 }
             }

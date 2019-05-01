@@ -21,10 +21,13 @@ public class PickItem : MonoBehaviour
     public GameObject armor;
     //背包
     public GameObject backpack;
+    private PhotonView pv;
+
     #endregion
     // Start is called before the first frame update
     void Start()
     {
+        pv = this.GetComponent<PhotonView>();
         bandageAmount = 0;
         drinkAmount = 0;
     }
@@ -32,11 +35,11 @@ public class PickItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerManager.pv.IsMine)
+        if (pv.IsMine)
         {
             AroundWeapons();
-            UIManager.Instance.bandageAmountText.text = bandageAmount.ToString();
-            UIManager.Instance.drinkAmountText.text = drinkAmount.ToString();
+            this.GetComponent<UIManager>().bandageAmountText.text = bandageAmount.ToString();
+            this.GetComponent<UIManager>().drinkAmountText.text = drinkAmount.ToString();
         }
     }
 
@@ -46,31 +49,31 @@ public class PickItem : MonoBehaviour
         Ray ray = new Ray(rayPos, myCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3, 1 << 12))
         {
-            UIManager.Instance.itemText.gameObject.SetActive(true);
+            this.GetComponent<UIManager>().itemText.gameObject.SetActive(true);
             switch (hit.collider.gameObject.tag)
             {
                 case "helmet":
-                    UIManager.Instance.itemText.text = "拾取头盔";
+                    this.GetComponent<UIManager>().itemText.text = "拾取头盔";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         //仅远程玩家可以看到头盔
-                        PlayerManager.pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                        pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                     }
                     break;
                 case "armor":
-                    UIManager.Instance.itemText.text = "拾取防弹衣";
+                    this.GetComponent<UIManager>().itemText.text = "拾取防弹衣";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        PlayerManager.pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                        pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                     }
                     break;
                 case "Bandage":
-                    UIManager.Instance.itemText.text = "拾取绷带";
+                    this.GetComponent<UIManager>().itemText.text = "拾取绷带";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        PlayerManager.pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                        pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                         Debug.Log("已经拾取了绷带");
                         //背包绷带数加一
@@ -78,18 +81,18 @@ public class PickItem : MonoBehaviour
                     }
                     break;
                 case "Backpack":
-                    UIManager.Instance.itemText.text = "拾取背包";
+                    this.GetComponent<UIManager>().itemText.text = "拾取背包";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        PlayerManager.pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                        pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                     }
                     break;
                 case "Drink":
-                    UIManager.Instance.itemText.text = "拾取饮料";
+                    this.GetComponent<UIManager>().itemText.text = "拾取饮料";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                        PlayerManager.pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                       pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                         drinkAmount++;
                     }
@@ -98,7 +101,7 @@ public class PickItem : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.itemText.gameObject.SetActive(false);
+            this.GetComponent<UIManager>().itemText.gameObject.SetActive(false);
         }
     }
 

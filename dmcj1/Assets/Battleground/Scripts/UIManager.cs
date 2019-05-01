@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     //下方枪械UI显示
     [Header("枪械UI")]
     public Image[] gunImage;
@@ -74,13 +68,4 @@ public class UIManager : MonoBehaviour
     //被攻击提示
     [Header("被攻击提示")]
     public GameObject damagePanel;
-
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
 }
