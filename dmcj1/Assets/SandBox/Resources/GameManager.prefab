@@ -45,8 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 100000, guid: dab009cc422e90a42a3c8f3d1e2562e0, type: 3}
   spawnPositions: []
-  airplane: {fileID: 4986230301363237032, guid: 5d11861b9e320f440904e8ced2a28e7c,
-    type: 3}
   airplaneStartPos: {fileID: 0}
   map: {fileID: 0}
   startPos1: {fileID: 0}
@@ -56,6 +54,10 @@ MonoBehaviour:
   startPos5: {fileID: 0}
   startPos6: {fileID: 0}
   startPos7: {fileID: 0}
+  startPos8: {fileID: 0}
+  startPos9: {fileID: 0}
+  hideMap: {fileID: 0}
+  displayMap: {fileID: 0}
   posA:
   - {fileID: 0}
   - {fileID: 0}
@@ -98,5 +100,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  posH:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  posI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   gameStart: {fileID: 0}
   gameTimeDown: {fileID: 0}
+  mapAnimator: {fileID: 0}

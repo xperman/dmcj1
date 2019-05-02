@@ -33,6 +33,11 @@ public class HealthController : MonoBehaviour
     private PhotonView pv;
     public Animator removePlayerAnimator;
 
+    private void Awake()
+    {
+        //记录玩家的出生位置
+        resurrectionPositions = this.gameObject.transform.position;
+    }
 
     private void Start()
     {
@@ -47,7 +52,7 @@ public class HealthController : MonoBehaviour
         //监听返回游戏
         this.GetComponent<UIManager>().backGame.onClick.AddListener(() =>
         {
-            //attackScript.enabled = true;
+            attackScript.enabled = true;
             viewScript.enabled = true;
             this.GetComponent<UIManager>().backPanel.gameObject.SetActive(false);
             this.GetComponent<UIManager>().aimImage.gameObject.SetActive(true);
@@ -67,8 +72,7 @@ public class HealthController : MonoBehaviour
             }
         }
         dead = false;
-        //记录玩家的出生位置
-        resurrectionPositions = this.gameObject.transform.position;
+
     }
 
     void Update()
@@ -78,7 +82,7 @@ public class HealthController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 //禁止射击
-                //attackScript.enabled = false;
+                attackScript.enabled = false;
                 //禁止改变视角
                 viewScript.enabled = false;
                 //打开返回操作的面板
@@ -148,7 +152,7 @@ public class HealthController : MonoBehaviour
     public void Died()
     {
         this.GetComponent<UIManager>().deadPanel.gameObject.SetActive(true);
-       
+
         //玩家死亡
         dead = true;
         //禁止玩家的一些操作

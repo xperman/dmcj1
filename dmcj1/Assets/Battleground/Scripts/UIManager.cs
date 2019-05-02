@@ -71,4 +71,8 @@ public class UIManager : MonoBehaviour
     //是否全自动开火
     [Header("开火模式")]
     public Text isAuto;
+
+    //
+    public Slider mouseSpeed;
+    public Slider mouseAimSpeed;
 }

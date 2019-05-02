@@ -34,6 +34,8 @@ public class HandsOperating : MonoBehaviour
     {
         gun1State = false;
         gun2State = false;
+        isFire = true;
+        nowCamera = myCamera;
         inputManager = this.GetComponent<InputManager>();
         pv = this.GetComponent<PhotonView>();
     }
@@ -70,12 +72,14 @@ public class HandsOperating : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
+                isFire = false;
                 Reload();
+                StartCoroutine("ReloadTime");
             }
-
             SwitchGuns();
             AutoFireControl();
             Shoot();
+            Aim();
             OpenDoor();
         }
     }
@@ -282,12 +286,13 @@ public class HandsOperating : MonoBehaviour
     private void Shoot()
     {
         //单发模式
-        if (Input.GetMouseButtonDown(0) && !isAutoFire)
+        if (Input.GetMouseButtonDown(0) && !isAutoFire && isFire == true)
         {
             AppleShoot();
+
         }
         //全自动模式
-        if (Input.GetMouseButton(0) && isAutoFire == true)
+        if (Input.GetMouseButton(0) && isAutoFire == true && isFire == true)
         {
             if (Time.time - lastFired > 1 / fireRate)
             {
@@ -415,11 +420,13 @@ public class HandsOperating : MonoBehaviour
         }
 
     }
+    private Camera nowCamera;
+    public Camera aimCamera;
     //子弹射线
     private void ShootRay(float distance)
     {
-        rayPos = myCamera.ViewportToWorldPoint(new Vector3(0.5f, Random.Range(0.5f, 1.0f), 0.0f));
-        Ray ray = new Ray(rayPos, myCamera.transform.forward);
+        rayPos = nowCamera.ViewportToWorldPoint(new Vector3(0.5f, Random.Range(0.5f, 1.0f), 0.0f));
+        Ray ray = new Ray(rayPos, nowCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, distance))
         {
             //如果击中敌人
@@ -440,6 +447,130 @@ public class HandsOperating : MonoBehaviour
                 Destroy(tempHole, 0.3f);
             }
         }
+    }
+
+    private bool isAim = true;
+
+    public GameObject[] aimStateGuns;
+
+    private void Aim()
+    {
+        if (handgun1.childCount != 0 || handgun2.childCount != 0)
+        {
+            if (handgun1.GetChild(0).gameObject.activeInHierarchy == true)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    this.GetComponent<UIManager>().aimImage.gameObject.SetActive(false);
+                    if (handgun1.GetChild(0).gameObject.tag == "Barrett")
+                    {
+                        nowCamera = aimCamera;
+                        aimStateGuns[0].SetActive(true);
+                        this.GetComponent<RotateView>().sensitivityHor = 0.3f;
+                        this.GetComponent<RotateView>().sensitivityVert = 0.3f;
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "AK47")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[2].SetActive(true);
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[1].SetActive(true);
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "SMG")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[3].SetActive(true);
+                    }
+                }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    this.GetComponent<UIManager>().aimImage.gameObject.SetActive(true);
+                    if (handgun1.GetChild(0).gameObject.tag == "Barrett")
+                    {
+                        nowCamera = myCamera;
+                        aimStateGuns[0].SetActive(false);
+                        this.GetComponent<RotateView>().sensitivityHor = 2;
+                        this.GetComponent<RotateView>().sensitivityVert = 2;
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "AK47")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[2].SetActive(false);
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[1].SetActive(false);
+                    }
+                    else if (handgun1.GetChild(0).gameObject.tag == "SMG")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[3].SetActive(false);
+                    }
+                }
+            }
+            else if (handgun2.GetChild(0).gameObject.activeInHierarchy == true)
+            {
+
+                if (Input.GetMouseButtonDown(1))
+                {
+                    this.GetComponent<UIManager>().aimImage.gameObject.SetActive(false);
+                    if (handgun2.GetChild(0).gameObject.tag == "Barrett")
+                    {
+                        nowCamera = aimCamera;
+                        aimStateGuns[0].SetActive(true);
+                        this.GetComponent<RotateView>().sensitivityHor = 0.3f;
+                        this.GetComponent<RotateView>().sensitivityVert = 0.3f;
+                    }
+                    else if (handgun2.GetChild(0).gameObject.tag == "AK47")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[2].SetActive(true);
+                    }
+                    else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[1].SetActive(true);
+                    }
+
+                    else if (handgun2.GetChild(0).gameObject.tag == "SMG")
+                    {
+                        nowCamera.cullingMask = ~(1 << 14);
+                        aimStateGuns[3].SetActive(true);
+                    }
+                }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    this.GetComponent<UIManager>().aimImage.gameObject.SetActive(true);
+                    if (handgun2.GetChild(0).gameObject.tag == "Barrett")
+                    {
+                        nowCamera = myCamera;
+                        aimStateGuns[0].SetActive(false);
+                        this.GetComponent<RotateView>().sensitivityHor = 2;
+                        this.GetComponent<RotateView>().sensitivityVert = 2;
+                    }
+                    else if (handgun2.GetChild(0).gameObject.tag == "AK47")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[2].SetActive(false);
+                    }
+                    else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[1].SetActive(false);
+                    }
+                    else if (handgun2.GetChild(0).gameObject.tag == "SMG")
+                    {
+                        nowCamera.cullingMask = -1;
+                        aimStateGuns[3].SetActive(false);
+                    }
+                }
+            }
+        }
+
     }
 
     private void OpenDoor()
@@ -478,6 +609,7 @@ public class HandsOperating : MonoBehaviour
             }
         }
     }
+    private bool isFire;
     //重新装弹
     private void Reload()
     {
@@ -590,4 +722,9 @@ public class HandsOperating : MonoBehaviour
         }
     }
 
+    IEnumerator ReloadTime()
+    {
+        yield return new WaitForSeconds(1.4f);
+        isFire = true;
+    }
 }
