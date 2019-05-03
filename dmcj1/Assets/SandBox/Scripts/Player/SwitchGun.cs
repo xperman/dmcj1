@@ -131,35 +131,35 @@ public class SwitchGun : MonoBehaviour
         {
             case "sinper":
                 currentHandGun.GetComponent<Sinper>().useBullets();
-                if (currentHandGun.GetComponent<Sinper>().scarBullets > 0)
+                if (currentHandGun.GetComponent<Sinper>().bulletsAmount > 0)
                 {
                     VirtualRay();
                 }
                 break;
             case "scar":
                 currentHandGun.GetComponent<Scar>().useBullets();
-                if (currentHandGun.GetComponent<Scar>().scarBullets > 0)
+                if (currentHandGun.GetComponent<Scar>().bulletsAmount > 0)
                 {
                     VirtualRay();
                 }
                 break;
             case "akm":
                 currentHandGun.GetComponent<Akm>().useBullets();
-                if (currentHandGun.GetComponent<Akm>().scarBullets > 0)
+                if (currentHandGun.GetComponent<Akm>().bulletsAmount > 0)
                 {
                     VirtualRay();
                 }
                 break;
             case "smg":
-                currentHandGun.GetComponent<Smg>().useBullets();
-                if (currentHandGun.GetComponent<Smg>().scarBullets > 0)
+                currentHandGun.GetComponent<Smg>().UseBullets();
+                if (currentHandGun.GetComponent<Smg>().bulletsAmount > 0)
                 {
                     VirtualRay();
                 }
                 break;
             case "lever":
                 currentHandGun.GetComponent<Lever>().useBullets();
-                if (currentHandGun.GetComponent<Lever>().scarBullets > 0)
+                if (currentHandGun.GetComponent<Lever>().bulletsAmount > 0)
                 {
                     VirtualRay();
                 }
@@ -214,23 +214,23 @@ public class SwitchGun : MonoBehaviour
             switch (currentHandGun.tag)
             {
                 case "sinper":
-                    currentHandGun.GetComponent<Sinper>().scarBullets = 5;
+                    currentHandGun.GetComponent<Sinper>().bulletsAmount = 5;
                     currentHandGun.GetComponent<Sinper>().Reload();
                     break;
                 case "scar":
-                    currentHandGun.GetComponent<Scar>().scarBullets = 30;
+                    currentHandGun.GetComponent<Scar>().bulletsAmount = 30;
                     currentHandGun.GetComponent<Scar>().Reload();
                     break;
                 case "akm":
-                    currentHandGun.GetComponent<Akm>().scarBullets = 30;
+                    currentHandGun.GetComponent<Akm>().bulletsAmount = 30;
                     currentHandGun.GetComponent<Akm>().Reload();
                     break;
                 case "smg":
-                    currentHandGun.GetComponent<Smg>().scarBullets = 25;
+                    currentHandGun.GetComponent<Smg>().bulletsAmount = 25;
                     currentHandGun.GetComponent<Smg>().Reload();
                     break;
                 case "lever":
-                    currentHandGun.GetComponent<Lever>().scarBullets = 2;
+                    currentHandGun.GetComponent<Lever>().bulletsAmount = 2;
                     currentHandGun.GetComponent<Lever>().Reload();
                     break;
             }
@@ -332,19 +332,19 @@ public class SwitchGun : MonoBehaviour
             switch (currentHandGun.tag)
             {
                 case "sinper":
-                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Sinper>().bulletsAmount.ToString() + "/5";
                     break;
                 case "scar":
-                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Scar>().bulletsAmount.ToString() + "/30";
                     break;
                 case "akm":
-                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Akm>().bulletsAmount.ToString() + "/30";
                     break;
                 case "smg":
-                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Smg>().bulletsAmount.ToString() + "/25";
                     break;
                 case "lever":
-                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                    this.GetComponent<UIManager>().bulletsAmountText.text = currentHandGun.GetComponent<Lever>().bulletsAmount.ToString() + "/2";
                     break;
             }
         }

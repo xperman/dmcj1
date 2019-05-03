@@ -154,7 +154,7 @@ public class HandsOperating : MonoBehaviour
                     pv.RPC("RemovePlayerPick", RpcTarget.AllBuffered, itemName);
                     this.GetComponent<UIManager>().isAuto.gameObject.SetActive(true);
                     handsMelle.SetActive(false); //关闭手
-                    this.GetComponent<UIManager>().bulletsAmountText.gameObject.SetActive(true);
+                    this.GetComponent<UIManager>().bulletsControl.SetActive(true);
                     Debug.Log("萝卜");
                 }
                 else if (gun1State == true && gun2State == false)
@@ -314,51 +314,50 @@ public class HandsOperating : MonoBehaviour
             {
                 if (handgun1.GetChild(0).gameObject.tag == "AK47")
                 {
-                    if (handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets > 0)
+                    if (handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                 {
-                    if (handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets > 0)
+                    if (handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
                 {
-                    if (handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets > 0)
+                    if (handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
                         ShootRay(1000);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
                 {
-                    if (handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets > 0)
+                    if (handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount > 0)
                     {
-                        Debug.Log("here!!!!!");
                         handgun1.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
                         ShootRay(5);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
                 {
-                    if (handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets > 0)
+                    if (handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount > 0)
                     {
-                        handgun1.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                        handgun1.GetChild(0).gameObject.GetComponent<Smg>().UseBullets();
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();/* + "/" + handgun1.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();*/
                         ShootRay(50);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
@@ -368,50 +367,50 @@ public class HandsOperating : MonoBehaviour
             {
                 if (handgun2.GetChild(0).gameObject.tag == "AK47")
                 {
-                    if (handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets > 0)
+                    if (handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
                 {
-                    if (handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets > 0)
+                    if (handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
                 {
-                    if (handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets > 0)
+                    if (handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
                         ShootRay(1000);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
                 {
-                    if (handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets > 0)
+                    if (handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
                         ShootRay(5);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
                 {
-                    if (handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets > 0)
+                    if (handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount > 0)
                     {
-                        handgun2.GetChild(0).gameObject.GetComponent<Smg>().useBullets();
-                        this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                        handgun2.GetChild(0).gameObject.GetComponent<Smg>().UseBullets();
+                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();
                         ShootRay(50);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
@@ -620,27 +619,27 @@ public class HandsOperating : MonoBehaviour
                 if (handgun1.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Akm>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Scar>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Lever>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/2";
+                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Smg>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();/* + "/" + handgun1.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();*/
                 }
                 //myAnimator.SetTrigger("Reload");
             }
@@ -649,27 +648,27 @@ public class HandsOperating : MonoBehaviour
                 if (handgun2.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Akm>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().scarBullets.ToString() + "/30";
+                    //  this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Scar>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().scarBullets.ToString() + "/30";
+                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().scarBullets.ToString() + "/5";
+                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Lever>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().scarBullets.ToString() + "/3";
+                    //  this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Smg>().Reload();
-                    this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().scarBullets.ToString() + "/25";
+                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();
                 }
             }
         }

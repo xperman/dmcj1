@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
     //目前子弹数量显示
     [Header("目前子弹的Text")]
     public Text bulletsAmountText;
+    public GameObject bulletsControl;
+    //备用子弹数
+    [Header("备用子弹数")]
+    public Text backupBulletsAmounts;
     //可拾取物品的信息
     [Header("可拾取物品的信息")]
     public Text itemText;

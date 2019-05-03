@@ -61,12 +61,7 @@ public class UseItem : MonoBehaviour
                 isUseItem = true;
                 //加血持续时间为3秒
                 StartCoroutine("AddHealthTime");
-            }
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                //调用敌人的减血代码
-                GetComponent<PhotonView>().RPC("DamageGet", RpcTarget.AllBuffered, 10, gameObject.name, null);
-            }
+            }          
             if(isUseItem==true)
             {
                 useItemImage.SetActive(true);

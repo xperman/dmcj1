@@ -25,8 +25,6 @@ public class HealthController : MonoBehaviour
     public Behaviour attackScript;
     //视角的脚本
     public Behaviour viewScript;
-    //用于渲染准星的摄像机
-    public Camera aimCamera;
     //死亡音效
     public AudioClip diedAudio;
     public AudioSource humanAudio;

@@ -23,7 +23,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
-                                                                 
+
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -55,7 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         // Update is called once per frame
         private void Update()
-        {        
+        {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -104,7 +104,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             //Debug.Log("m_MoveDir.x" + m_MoveDir.x);
             //Debug.Log("m_MoveDir.z" + m_MoveDir.z);
-           //currentGun.SetFloat("Run", Mathf.Abs(m_MoveDir.x + m_MoveDir.z));
+            //currentGun.SetFloat("Run", Mathf.Abs(m_MoveDir.x + m_MoveDir.z));
             if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
@@ -148,8 +148,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_NextStep = m_StepCycle + m_StepInterval;
 
-            //PlayFootStepAudio();
-            pv.RPC("PlayFootStepAudio", RpcTarget.AllBuffered);
+            PlayFootStepAudio();
+            //pv.RPC("PlayFootStepAudio", RpcTarget.AllBuffered);
         }
 
         [PunRPC]
@@ -163,7 +163,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // excluding sound at index 0
             int n = Random.Range(1, m_FootstepSounds.Length);
             m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);          
+            m_AudioSource.PlayOneShot(m_AudioSource.clip);
             m_FootstepSounds[n] = m_FootstepSounds[0];
             m_FootstepSounds[0] = m_AudioSource.clip;
         }
@@ -215,14 +215,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // only if the player is going to a run, is running and the fovkick is to be used
             if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
             {
-                StopAllCoroutines();             
+                StopAllCoroutines();
             }
         }
 
 
         private void RotateView()
         {
-          
+
         }
 
 

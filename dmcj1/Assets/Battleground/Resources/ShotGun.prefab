@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2586115940748366423}
   - component: {fileID: 8047154179957209827}
   - component: {fileID: 4368251690382832535}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: ShotGun
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2586115940748856954}
   - component: {fileID: 2586115940751756890}
   - component: {fileID: 2586115940750625946}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6aa38f7565c74504ab51f39e765db5f1, type: 2}
+  - {fileID: 2100000, guid: 5ef3cf4da8591ef409f8c4252e0b45b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 2586115940748856952}
   - component: {fileID: 2586115940751756888}
   - component: {fileID: 2586115940750625944}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 2586115940748856956}
   - component: {fileID: 2586115940751756892}
   - component: {fileID: 2586115940750625948}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: barrel
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 2586115940748856958}
   - component: {fileID: 2586115940751756894}
   - component: {fileID: 2586115940750625950}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: wood
   m_TagString: Shotgun
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6aa38f7565c74504ab51f39e765db5f1, type: 2}
+  - {fileID: 2100000, guid: 5ef3cf4da8591ef409f8c4252e0b45b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2590137022049302976}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: muzzlefx
   m_TagString: Shotgun
   m_Icon: {fileID: 0}

@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     //玩家预设。
-    public GameObject[] playerPrefab;
+    public GameObject playerPrefab;
+    public Material[] playerSkins;
     //玩家出生点随机
     public Transform[] spawnPositions;
     //飞机进场位置
@@ -130,39 +131,48 @@ public class GameManager : MonoBehaviourPunCallbacks
         switch (areaNum)
         {
             case 1:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "城市区";
                 break;
             case 2:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer2 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer2.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "南部绿地";
                 break;
             case 3:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer3 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer3.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "军火商";
                 break;
             case 4:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer4 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer4.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "工业地区";
                 break;
             case 5:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer5 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer5.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "南部无人区";
                 break;
             case 6:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer6 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer6.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "极北荒原";
                 break;
             case 7:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer7 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer7.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "农业区";
                 break;
             case 8:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer8 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer8.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "暴乱之地";
                 break;
             case 9:
-                PhotonNetwork.Instantiate(playerPrefab[Random.Range(0, 4)].name, applyPos, Quaternion.identity, 0);
+                GameObject tempPlayer9 = PhotonNetwork.Instantiate(playerPrefab.name, applyPos, Quaternion.identity, 0);
+                tempPlayer9.GetComponentInChildren<SkinnedMeshRenderer>().material = playerSkins[Random.Range(0, 4)];
                 enterGameText.text = "北部无人区";
                 break;
         }
@@ -180,10 +190,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             gameTimeDown.text = "进入游戏";
             gameTimeDown.GetComponent<Animator>().SetBool("enter", true);
             break;
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            map.SetActive(true);
         }
     }
     /// <summary>

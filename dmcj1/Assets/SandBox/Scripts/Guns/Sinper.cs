@@ -5,11 +5,9 @@ using UnityEngine;
 public class Sinper : MonoBehaviour
 {
     //30发子弹
-    private int bulletsAmount = 5;
-    //是否可以射击
-    private bool isShoot;
-    public int scarBullets { get { return bulletsAmount; } set { bulletsAmount = value; } }
-    public bool IsShoot { get { return isShoot; } }
+    public int bulletsAmount = 5;
+    //备用子弹数
+    public int backupBullets = 5;
     // 0 : 开火声音 1 :卡壳声音 2: 换弹声音
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;
@@ -19,21 +17,20 @@ public class Sinper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isShoot = true;
+
     }
-   
+
     // Update is called once per frame
     void Update()
     {
-        
+        this.GetComponentInParent<UIManager>().bulletsAmountText.text = bulletsAmount.ToString();
+        this.GetComponentInParent<UIManager>().backupBulletsAmounts.text = backupBullets.ToString();
     }
 
     public void useBullets()
     {
-
         if (bulletsAmount <= 0)
         {
-            isShoot = false;
             scarSource.clip = scarAudioClips[1];
             scarSource.Play();
         }
@@ -44,14 +41,28 @@ public class Sinper : MonoBehaviour
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
             gunAnimatorRemove.SetTrigger("Shoot");
+            Debug.Log("ssss");
         }
     }
 
     public void Reload()
     {
+        if (backupBullets <= 0)
+        {
+            Debug.Log("无法换单");
+            return;
+        }
+        else if (backupBullets > 0 && backupBullets < 5)
+        {
+            bulletsAmount = backupBullets;
+        }
+        else
+        {
+            bulletsAmount = backupBullets - (backupBullets -5);
+            backupBullets = backupBullets - 5;
+        }
         gunAnimator.SetTrigger("Reload");
         gunAnimatorRemove.SetTrigger("Reload");
-        bulletsAmount = 5;
         scarSource.clip = scarAudioClips[2];
         scarSource.Play();
     }
