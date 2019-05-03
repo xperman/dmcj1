@@ -8,7 +8,7 @@ public class Smg : MonoBehaviour
     //30发子弹
     public int bulletsAmount = 25;
     //备用子弹数
-    public int backupBullets = 25;
+    public int backupBullets = 50;
     //是否可以射击
     private bool isShoot;
     // 0 : 开火声音 1 :卡壳声音

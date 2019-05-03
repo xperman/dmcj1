@@ -7,7 +7,7 @@ public class Lever : MonoBehaviour
     //30发子弹
     public int bulletsAmount = 2;
     //备用子弹数
-    public int backupBullets = 2;
+    public int backupBullets = 10;
 
     // 0 : 开火声音 1 :卡壳声音
     public AudioClip[] scarAudioClips;

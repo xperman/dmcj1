@@ -317,7 +317,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
+
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
@@ -327,7 +327,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
+
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
@@ -337,7 +337,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
+
                         ShootRay(1000);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
@@ -347,8 +347,8 @@ public class HandsOperating : MonoBehaviour
                     if (handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
-                        ShootRay(5);
+
+                        ShootRay(10);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
@@ -357,7 +357,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount > 0)
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Smg>().UseBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();/* + "/" + handgun1.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();*/
+
                         ShootRay(50);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
@@ -370,7 +370,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
+
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
@@ -380,7 +380,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Scar>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
+
                         ShootRay(100);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
@@ -390,7 +390,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Sinper>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
+
                         ShootRay(1000);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
@@ -400,8 +400,8 @@ public class HandsOperating : MonoBehaviour
                     if (handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Lever>().useBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
-                        ShootRay(5);
+
+                        ShootRay(10);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
                 }
@@ -410,7 +410,7 @@ public class HandsOperating : MonoBehaviour
                     if (handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount > 0)
                     {
                         handgun2.GetChild(0).gameObject.GetComponent<Smg>().UseBullets();
-                        //this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();
+
                         ShootRay(50);
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun2.GetChild(0).gameObject.tag);
                     }
@@ -619,56 +619,54 @@ public class HandsOperating : MonoBehaviour
                 if (handgun1.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Akm>().Reload();
-                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Scar>().Reload();
-                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
+
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
-                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
+
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Lever>().Reload();
-                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun1.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
+
                 }
                 else if (handgun1.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun1.GetChild(0).gameObject.GetComponent<Smg>().Reload();
-                    //this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun1.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString();/* + "/" + handgun1.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();*/
+
                 }
-                //myAnimator.SetTrigger("Reload");
             }
             else if (handgun2.GetChild(0).gameObject.activeInHierarchy == true)
             {
                 if (handgun2.GetChild(0).gameObject.tag == "AK47")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Akm>().Reload();
-                    //  this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Akm>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Akm>().BackupBullets.ToString();
+
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "M4A1")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Scar>().Reload();
-                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Scar>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Scar>().BackupBullets.ToString();
+
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Barrett")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Sinper>().Reload();
-                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Sinper>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Sinper>().BackupBullets.ToString();
+
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "Shotgun")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Lever>().Reload();
-                    //  this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Lever>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Lever>().BackupBullets.ToString();
+
                 }
                 else if (handgun2.GetChild(0).gameObject.tag == "SMG")
                 {
                     handgun2.GetChild(0).gameObject.GetComponent<Smg>().Reload();
-                    // this.GetComponent<UIManager>().bandageAmountText.text = this.GetComponent<UIManager>().bulletsAmountText.text = handgun2.GetChild(0).gameObject.GetComponent<Smg>().bulletsAmount.ToString() + "/" + handgun2.GetChild(0).gameObject.GetComponent<Smg>().BackupBullets.ToString();
+
                 }
             }
         }

@@ -7,7 +7,7 @@ public class Sinper : MonoBehaviour
     //30发子弹
     public int bulletsAmount = 5;
     //备用子弹数
-    public int backupBullets = 5;
+    public int backupBullets = 10;
     // 0 : 开火声音 1 :卡壳声音 2: 换弹声音
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;

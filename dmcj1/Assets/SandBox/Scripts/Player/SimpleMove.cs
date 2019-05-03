@@ -12,12 +12,18 @@ public class SimpleMove : MonoBehaviourPun
     //远程玩家眼里的完整模型
     public Animator anmRemove;
     public Animator[] anmGuns;
+
+    public Transform kneeling;
+    public Transform squat;
+    public Transform stand;
+    public GameObject eye;
     //最大跳跃力
     public float maxJumpForce;
     //角色最大行进速度
     public float walkMaxSpeed;
     private PhotonView pv;
     #endregion
+
 
     private void Start()
     {
@@ -39,19 +45,19 @@ public class SimpleMove : MonoBehaviourPun
         if (Input.GetKeyDown(KeyCode.Z))
         {
             anmRemove.SetInteger("BodyState", 2); //趴下
-            //playerLocal.transform.position = standState.position;
+            eye.transform.localPosition = kneeling.localPosition;
         }
 
         if (Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Z))
         {
             anmRemove.SetInteger("BodyState", 0); //站起
-                                                  // playerLocal.transform.position = standState.position;
+            eye.transform.localPosition = stand.localPosition;
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             anmRemove.SetInteger("BodyState", 1);//蹲下
-                                                 // playerLocal.transform.position = squatState.position;
+            eye.transform.localPosition = squat.localPosition;
         }
 
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)

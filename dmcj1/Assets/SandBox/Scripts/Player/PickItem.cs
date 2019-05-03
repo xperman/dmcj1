@@ -92,10 +92,27 @@ public class PickItem : MonoBehaviour
                     this.GetComponent<UIManager>().itemText.text = "拾取饮料";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
-                       pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
+                        pv.RPC("RemovePlayerPickItem", RpcTarget.AllBuffered, hit.collider.gameObject.tag);
                         hit.collider.gameObject.GetComponent<PhotonView>().RPC("DestoryThisObject", RpcTarget.AllBuffered);
                         drinkAmount++;
                     }
+                    break;
+                case "556":
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        guns[0].GetComponentInChildren<Akm>().backupBullets = 60;
+                        guns[1].GetComponentInChildren<Sinper>().backupBullets = 30;
+                        guns[2].GetComponentInChildren<Scar>().backupBullets = 60;
+                        guns[3].GetComponentInChildren<Lever>().backupBullets = 60;
+                        guns[4].GetComponentInChildren<Smg>().backupBullets = 60;
+                    }
+
+                    break;
+                case "762":
+
+                    break;
+                case "999":
+
                     break;
             }
         }
@@ -104,6 +121,8 @@ public class PickItem : MonoBehaviour
             this.GetComponent<UIManager>().itemText.gameObject.SetActive(false);
         }
     }
+
+    public GameObject[] guns;
 
     [PunRPC]
     private void RemovePlayerPickItem(string item)
