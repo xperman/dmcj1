@@ -164,8 +164,6 @@ namespace Photon.Realtime
             this.CustomProperties = new Hashtable();
             this.InternalCacheProperties(playerProperties);
         }
-
-
         /// <summary>
         /// Get a Player by ActorNumber (Player.ID).
         /// </summary>

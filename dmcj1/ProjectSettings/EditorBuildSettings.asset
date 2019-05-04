@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Battleground/Scenes/GameBegin 1.unity
+    path: Assets/Battleground/Scenes/BattleLogin.unity
     guid: 333142f7412d14545a32440c7100d134
   - enabled: 1
     path: Assets/Battleground/Scenes/Battleground.unity
