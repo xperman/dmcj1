@@ -17,6 +17,8 @@ public class Akm : MonoBehaviour
     public Animator gunAnimatorRemove;
     public PhotonView pv;
 
+    public int ClipSize = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,15 +45,14 @@ public class Akm : MonoBehaviour
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
             gunAnimatorRemove.SetTrigger("Shoot");
-            Debug.Log("ssss");
         }
     }
-
+    
     public void Reload()
     {
         if (backupBullets <= 0)
         {
-            Debug.Log("无法换单");
+            Debug.Log("无法换弹");
             return;
         }
         else if (backupBullets > 0 && backupBullets < 30)
@@ -59,9 +60,10 @@ public class Akm : MonoBehaviour
             bulletsAmount = backupBullets;
         }
         else
-        {
+        {           
             bulletsAmount = backupBullets - (backupBullets - 30);
             backupBullets = backupBullets - 30;
+
         }
         gunAnimator.SetTrigger("Reload");
         gunAnimatorRemove.SetTrigger("Reload");

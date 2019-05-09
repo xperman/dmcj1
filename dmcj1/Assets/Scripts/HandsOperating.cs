@@ -81,7 +81,7 @@ public class HandsOperating : MonoBehaviour
             SwitchGuns();
             AutoFireControl();
             Shoot();
-            Aim();
+            //Aim();
             OpenDoor();
         }
     }
@@ -156,7 +156,6 @@ public class HandsOperating : MonoBehaviour
                     this.GetComponent<UIManager>().isAuto.gameObject.SetActive(true);
                     handsMelle.SetActive(false); //关闭手
                     this.GetComponent<UIManager>().bulletsControl.SetActive(true);
-                    Debug.Log("萝卜");
                 }
                 else if (gun1State == true && gun2State == false)
                 {
@@ -171,7 +170,6 @@ public class HandsOperating : MonoBehaviour
                         //关闭与拾取到的东西相同的物品
                         items[i].SetActive(false);
                         gun2State = true;
-                        Debug.Log("萝卜2");
                     }
                 }
 
@@ -196,8 +194,6 @@ public class HandsOperating : MonoBehaviour
                             items[i].transform.SetParent(handgun1);
                             //关闭与拾取到的东西相同的物品
                             items[i].SetActive(false);
-                            //GunImageControl(itemName);
-                            Debug.Log("哈哈1");
                         }
                         else if (handgun1.GetChild(0).gameObject.activeInHierarchy == true)
                         {
@@ -207,8 +203,6 @@ public class HandsOperating : MonoBehaviour
                             items[i].transform.SetParent(handgun2);
                             //关闭与拾取到的东西相同的物品
                             items[i].SetActive(false);
-                            //GunImageControl(itemName);
-                            Debug.Log("哈哈2");
                         }
                     }
                 }
@@ -306,6 +300,7 @@ public class HandsOperating : MonoBehaviour
         }
     }
 
+    private bool isAimming = false;
 
     //实现射击
     private void AppleShoot()
@@ -320,7 +315,15 @@ public class HandsOperating : MonoBehaviour
                     {
                         handgun1.GetChild(0).gameObject.GetComponent<Akm>().useBullets();
                         tempGun[2].SetTrigger("Fire");
-                        ShootRay(100, 25);
+                        if (isAimming == true)
+                        {
+                            ShootRayAim(100, 25);
+                            handgun1.GetChild(0).gameObject.GetComponent<Animator>().SetTrigger("AimFire");
+                        }
+                        else if (isAimming == false)
+                        {
+                            ShootRay(100, 25);
+                        }
                         pv.RPC("ShootRemove", RpcTarget.AllBuffered, handgun1.GetChild(0).gameObject.tag);
                     }
                 }
@@ -450,9 +453,40 @@ public class HandsOperating : MonoBehaviour
         }
     }
 
+    private Vector3 rayPosAim;
+    private void ShootRayAim(float distance, int power)
+    {
+        rayPosAim = redPointPos.transform.position;
+        Ray ray = new Ray(rayPosAim, redPointPos.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, distance))
+        {
+            //如果击中敌人
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                //调用敌人的减血代码
+                hit.transform.GetComponent<PhotonView>().RPC("DamageGet", RpcTarget.AllBuffered, power, hit.point);
+                //生成一个临时弹孔
+                GameObject tempHole = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                //0.3s后销毁弹孔
+                Destroy(tempHole, 0.3f);
+            }
+            //如果击中建筑物
+            else if (hit.collider.gameObject.tag == "buildings")
+            {
+                //生成一个临时弹孔
+                GameObject tempHole = Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                Destroy(tempHole, 0.3f);
+            }
+        }
+    }
+
     private bool isAim = true;
 
     public GameObject[] aimStateGuns;
+
+    public Animator test;
+
+    public Transform redPointPos;
 
     private void Aim()
     {
@@ -467,14 +501,17 @@ public class HandsOperating : MonoBehaviour
                     {
                         nowCamera = aimCamera;
                         aimStateGuns[0].SetActive(true);
+
                         this.GetComponent<RotateView>().sensitivityHor = 0.3f;
                         this.GetComponent<RotateView>().sensitivityVert = 0.3f;
                     }
                     else if (handgun1.GetChild(0).gameObject.tag == "AK47")
                     {
-                        nowCamera.cullingMask = ~(1 << 14);
-                        aimStateGuns[2].SetActive(true);
-                        tempGun[2].SetBool("Aim", true);
+                        isAimming = true;
+                        handgun1.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Aim", true);
+                        //改变子弹射线的初始位置
+                        rayPosAim = redPointPos.transform.position;
+                        test.SetBool("Aim", true);
                     }
                     else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                     {
@@ -500,9 +537,8 @@ public class HandsOperating : MonoBehaviour
                     }
                     else if (handgun1.GetChild(0).gameObject.tag == "AK47")
                     {
-                        nowCamera.cullingMask = -1;
-                        aimStateGuns[2].SetActive(false);
-                        tempGun[2].SetBool("Aim", false);
+                        isAimming = false;
+                        test.SetBool("Aim", false);
                     }
                     else if (handgun1.GetChild(0).gameObject.tag == "M4A1")
                     {

@@ -508,9 +508,10 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 35
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!1 &1206031813812098
 GameObject:
@@ -536,8 +537,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206031813812098}
   m_LocalRotation: {x: -0.0000014452605, y: 0.70710677, z: 0.7071069, w: 0.0000016464743}
-  m_LocalPosition: {x: 0.21851349, y: 1.9865675, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.21851349, y: 0.62, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4984845312824898}
   m_RootOrder: 4
@@ -727,7 +728,7 @@ Animator:
   m_GameObject: {fileID: 1537466637379594}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 332ea3186be1b074dac77df9ebde2570, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdd71c85f20dc4b458942b286a68b4e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: e5d319948d4f6774aa93cc74a30ae8e7
-timeCreated: 1522505877
-licenseType: Store
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: BaseCharacter
     100002: Bip002
@@ -150,6 +148,7 @@ ModelImporter:
     7400024: Shoot_Rifle
     7400026: Idle_Gun_Pistol
     9500000: //RootNode
+    11100000: //RootNode
     13700000: BaseCharacter
   externalObjects: {}
   materials:
@@ -170,6 +169,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -576,6 +576,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -593,11 +594,16 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -796,18 +802,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: character_base2(Clone)
+    - name: character_base_human(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0.0000016410563, z: 0, w: 1}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: BaseCharacter
-      parentName: character_base2(Clone)
+      parentName: character_base_human(Clone)
       position: {x: -0, y: 0, z: -0.0065683974}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 0.0254, y: 0.0254, z: 0.0254}
     - name: Bip001
-      parentName: character_base2(Clone)
+      parentName: character_base_human(Clone)
       position: {x: 0.007924068, y: 0.6344246, z: 0.020309418}
       rotation: {x: -0.5000004, y: 0.4999996, z: 0.4999996, w: 0.5000004}
       scale: {x: 0.025399996, y: 0.025399996, z: 0.0254}
@@ -818,7 +824,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
       parentName: Bip001
-      position: {x: 0.00000054999373, y: 0.31196848, z: 1.435606}
+      position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bip001 Spine
@@ -969,7 +975,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1

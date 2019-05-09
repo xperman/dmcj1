@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Battleground/Scenes/BattleLogin.unity
+    path: Assets/Scenes/BattleLogin.unity
     guid: 333142f7412d14545a32440c7100d134
   - enabled: 1
-    path: Assets/Battleground/Scenes/Battleground.unity
+    path: Assets/Scenes/Sand Box.unity
+    guid: af21e143a06da234a9fce62ff96e256b
+  - enabled: 1
+    path: Assets/Scenes/Battleground.unity
     guid: b932bd4a5a37da1408fcff17372d360f
   m_configObjects: {}

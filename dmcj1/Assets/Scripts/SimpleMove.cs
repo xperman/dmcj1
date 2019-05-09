@@ -40,7 +40,8 @@ public class SimpleMove : MonoBehaviourPun
 
     private void RoleCharacterControl()
     {
-        anmRemove.SetFloat("Velocity", Input.GetAxis("Vertical")); //这个只会在远程玩家眼里看到      
+        // This only show in the remove playe eyes   
+        anmRemove.SetFloat("Velocity", Input.GetAxis("Vertical"));   
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

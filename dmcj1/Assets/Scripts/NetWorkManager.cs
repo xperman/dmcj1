@@ -6,166 +6,155 @@ using UnityEngine.UI;
 
 public class NetWorkManager : MonoBehaviourPunCallbacks
 {
-    //创建和加入房间的面板
-    public GameObject creatOrJoinPanel;
-    //创建房间
-    public Button creatButton;
-    //退出游戏
-    public Button quitGameButton;
-    //连接信息
-    public Text debugLog;
-    //大厅面板
-    public GameObject lobbyPanel;
-    //房间信息
-    private RoomOptions roomOptions = new RoomOptions();
-    //最大人数
-    private byte maxPlayers = 10;
-    //是否允许创建房间
-    private bool isAllowCreatARoom;
+    /*This is the third time i have written this script. I have dropped so many ' PITS '. However i believe this time is the last time.*/
 
-    public Animator matchInformation;
+    // Start Match button.
+    [Header("Creat room")]
+    [SerializeField] private Button startMatch;
+    // Join a room button.
+    [Header("Join random room")]
+    [SerializeField] private Button joinRandomRoom;
 
-    public AudioSource click;
+    // The panel while we have connected master
+    [Header("Lobby panel")]
+    [SerializeField] private GameObject nextPanel;
 
-    //玩家头像
-    public Image[] headPortrait;
+    // Contains two gameObject(the load image and game title)
+    [Header("Login panel")]
+    [SerializeField] private GameObject[] initalState;
 
-    public GameObject portraitPanel;
+    //Player head images
+    [Header("Player head icon")]
+    [SerializeField] private Image[] headImage;
 
-    public InputField yourName;
-    public Button enterYourName;
+    // We can see some player at the current room 
+    [Header("Current panel in the room")]
+    [SerializeField] private GameObject playersPanel;
 
-    //called once on game begin
+    //Custom your name
+    [Header("Custom your nickname")]
+    [SerializeField] private InputField playerName;
+
+    //Enter your name
+    [Header("Confirm your nickname")]
+    [SerializeField] private Button enterYourName;
+
+    //Load the Sand Box scene
+    [Header("Exercise scene")]
+    [SerializeField] private Button sandBox;
+
+    //BatttleGround scene
+    [Header("BattleGround scene")]
+    [SerializeField] private Button battleground;
+
+    //Selete map panel
+    [Header("Selete room panel")]
+    [SerializeField] private GameObject seletePanel;
+
+    //Current room players amount
+    [Header("Current room players amount")]
+    [SerializeField] private Text currentPlayers;
+
+    [SerializeField] private GameObject currentPlayer;
+    [SerializeField] private GameObject matchInformation;
+
+    //Whether to allow us to join the random room
+    private bool joinRoomIs;
+
+    private bool roomIs;
+
+    private int mapNums = 0;
+
     private void Start()
     {
+        //All client can update same scene with you.
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.NickName = "无名之辈";
-        //需要等待客户端连接到服务器才可以创建房间
-        isAllowCreatARoom = false;
-        //创建一个房间
-        creatButton.onClick.AddListener(() =>
-        {
-            if (isAllowCreatARoom == true)
-            {
-                PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayers }, null, null);
-            }
-        });
-        enterYourName.onClick.AddListener(() => { PhotonNetwork.NickName = yourName.text; });
-        //退出游戏
-        quitGameButton.onClick.AddListener(() =>
-        {
-            //断开连接
-            PhotonNetwork.Disconnect();
-            //退出游戏
-            Application.Quit();
-        });
+        //At the begin we try connect server firstly by the define setting document in the resources file.
+        PhotonNetwork.ConnectUsingSettings();
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        joinRoomIs = false;
+        roomIs = false;
+
+        //we creat a room that allow others to join it.
+        startMatch.onClick.AddListener(CreatRoom);
+
+        // join a random if prossible.
+        joinRandomRoom.onClick.AddListener(JoinRoom);
+        enterYourName.onClick.AddListener(() => { PhotonNetwork.NickName = playerName.text; });
+        //Listen these two buttons
+        sandBox.onClick.AddListener(() => { PhotonNetwork.LoadLevel(1); playersPanel.SetActive(true); currentPlayer.SetActive(true); });
+        battleground.onClick.AddListener(() => { PhotonNetwork.LoadLevel(2); playersPanel.SetActive(true); currentPlayer.SetActive(true); });
     }
+
     private void Update()
     {
-        int number = PhotonNetwork.PlayerList.Length;
-        for (int i = 0; i < number; i++)
+        if (roomIs == true)
         {
-            headPortrait[i].gameObject.SetActive(true);
+            headImage[PhotonNetwork.CurrentRoom.PlayerCount].gameObject.SetActive(true);
+            currentPlayers.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString() + " / " + 20;
         }
     }
-    /// <summary>
-    /// 加入一个随机房间
-    /// </summary>
-    public void JoinARoom()
+
+    private void CreatRoom()
     {
-        if (PhotonNetwork.IsConnectedAndReady)
+        if (joinRoomIs == true && PhotonNetwork.IsConnectedAndReady)
+        {
+            PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 10 }, null, null);
+        }
+        else
+        {
+            Debug.Log("You can't creat a room, because you don't connected the master");
+        }
+    }
+
+    private void JoinRoom()
+    {
+        if (joinRoomIs == true)
         {
             PhotonNetwork.JoinRandomRoom();
         }
+        else
+        {
+            Debug.Log("There is no any open random room to join");
+        }
     }
 
-    /// <summary>
-    /// 绑定登录按钮
-    /// </summary>
-    public void StartMatching()
-    {
-        PhotonNetwork.GameVersion = "0.0.1";
-        PhotonNetwork.ConnectUsingSettings();
-    }
-
-    /// <summary>
-    /// 加入随机房间时回调
-    /// </summary>
-    /// <param name="returnCode">失败代号</param>
-    /// <param name="message">失败信息</param>
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        debugLog.text += "加入随机房间失败 : " + message;
-        Debug.Log("加入随机房间失败 : " + message);
-        matchInformation.SetBool("display", true);
-        StartCoroutine("HideMatchInfromation");
-        click.Play();
-    }
-
-    /// <summary>
-    /// 成功创建房间时调用
-    /// </summary>
     public override void OnCreatedRoom()
     {
-        debugLog.text = "创建房间成功";
-        Debug.Log("创建房间成功");
+        //it creat successfully then there is will show a selete map panel
+        seletePanel.SetActive(true);
+
+        Debug.Log(" Successfully created a room");
     }
 
-    /// <summary>
-    /// 创建房间失败时
-    /// </summary>
-    /// <param name="returnCode"></param>
-    /// <param name="message"></param>
-    public override void OnCreateRoomFailed(short returnCode, string message)
+    public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        debugLog.text += "创建房间失败";
-        Debug.Log("创建房间失败");
+        matchInformation.SetActive(true);
+        StartCoroutine("HideMatchInfor");
+        Debug.Log("Join a random room field");
     }
 
-    /// <summary>
-    /// 连接服务器时调用
-    /// </summary>
-    public override void OnConnectedToMaster()
-    {
-        //如果此客户端连接到了服务器才可以进行创建房间
-        isAllowCreatARoom = true;
-        lobbyPanel.SetActive(true);
-        Debug.Log("IsMasterClient   +   " + PhotonNetwork.IsMasterClient);
-    }
-
-    /// <summary>
-    /// 加入房间是调用
-    /// </summary>
     public override void OnJoinedRoom()
     {
-        portraitPanel.SetActive(true);
-        PhotonNetwork.LoadLevel(1);
-    }
-    /// <summary>
-    /// 进入房间时调用
-    /// </summary>
-    /// <param name="newPlayer"></param>
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        int number = PhotonNetwork.PlayerList.Length;
-        portraitPanel.SetActive(true);
-        //if (number >= 0)
-        //{
-        //    PhotonNetwork.LoadLevel(1);
-        //}
-        debugLog.text += "此房间内的玩家人数  ： " + number;
+        roomIs = true;
+        //PhotonNetwork.LoadLevel(1);
     }
 
-    /// <summary>
-    /// 隐藏弹出的信息
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator HideMatchInfromation()
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("We have connected master successfully");
+        // You can join a random room now
+        joinRoomIs = true;
+        // Show the "nextPanel" in the scene
+        nextPanel.SetActive(true);
+        // Hide the "initalState" in the scene       
+        initalState[0].SetActive(false);
+        initalState[1].SetActive(false);
+    }
+
+    IEnumerator HideMatchInfor()
     {
         yield return new WaitForSeconds(2f);
-        matchInformation.SetBool("display", false);
+        matchInformation.SetActive(false);
     }
 }

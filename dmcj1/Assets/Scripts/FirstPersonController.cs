@@ -1,12 +1,8 @@
-using System;
-using UnityEngine;
 using Photon.Pun;
-
+using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace UnityStandardAssets.Characters.FirstPerson
-{
-    [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
@@ -242,4 +238,3 @@ namespace UnityStandardAssets.Characters.FirstPerson
             body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
         }
     }
-}

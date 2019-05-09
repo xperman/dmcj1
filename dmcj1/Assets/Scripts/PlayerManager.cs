@@ -9,13 +9,15 @@ public class PlayerManager : MonoBehaviour
     public PhotonView pv;
     #endregion
     #region public
-    //自己看不见的对象
+    //The scripts that yourself can't patch
     public GameObject[] myself;
-    //别人看不见的对象
+    //The scripts that others can't patch
     public GameObject[] others;
     public Camera myCamera;
-    //自己可以控制的脚本
+    //The scripts that you can control
     public Behaviour[] scriptsController;
+    // View camera
+    public Camera firstPersonCamera;
     #endregion
     void Start()
     {
@@ -41,5 +43,5 @@ public class PlayerManager : MonoBehaviour
                 others[i].SetActive(false);
             }
         }
-    }
+    }   
 }
