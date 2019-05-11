@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: bdc81135d95868142ab1c837baa6f1bb, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &30379612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
+      propertyPath: m_TagString
+      value: Backpack
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1265,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
+      propertyPath: m_TagString
+      value: Backpack
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: a645fc8499b635e43a8a424fae81a785, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3890,7 +3898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 20a5a10db852aab46831d20a392d06bc, type: 3}
       propertyPath: m_TagString
-      value: Bandage
+      value: Drink
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20a5a10db852aab46831d20a392d06bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4256,7 +4264,7 @@ GameObject:
   m_TagString: buildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &1113309503
 MeshCollider:
@@ -5982,7 +5990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 20a5a10db852aab46831d20a392d06bc, type: 3}
       propertyPath: m_TagString
-      value: Bandage
+      value: Drink
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20a5a10db852aab46831d20a392d06bc, type: 3}
       propertyPath: m_LocalPosition.x

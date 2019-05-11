@@ -22,10 +22,10 @@ public class CanPickObject : MonoBehaviour, IPunObservable
             //如果是被销毁，再场景中销毁
             if (isHide == true)
             {
-                PhotonNetwork.Destroy(this.gameObject);
+                //PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.DestroyAll(this.gameObject);
             }
         }
-
     }
 
     [PunRPC]

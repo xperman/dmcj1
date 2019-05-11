@@ -75,7 +75,19 @@ public class UIManager : MonoBehaviour
     //是否全自动开火
     [Header("开火模式")]
     public Text isAuto;
-    public Slider mouseSpeed;
-    public Slider mouseAimSpeed;
+    //玩家昵称
+    [Header("玩家昵称")]
     public Text myName;
+    //背包面板
+    [Header("背包面板")]
+    public GameObject itemCanvas;
+    //背包中的头盔图片
+    [Header("背包中的头盔图片")]
+    public Image helemet;
+    //背包中的防弹衣图片
+    [Header("背包中的防弹衣图片")]
+    public Image aromor;
+    //背包中的背包图片
+    [Header("背包中的背包图片")]
+    public Image backpage;
 }

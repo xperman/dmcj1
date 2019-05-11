@@ -38,8 +38,8 @@ public class PickItem : MonoBehaviour
         if (pv.IsMine)
         {
             AroundWeapons();
-            this.GetComponent<UIManager>().bandageAmountText.text = bandageAmount.ToString();
-            this.GetComponent<UIManager>().drinkAmountText.text = drinkAmount.ToString();
+            this.GetComponent<UIManager>().bandageAmountText.text = "绷带 x " + bandageAmount.ToString();
+            this.GetComponent<UIManager>().drinkAmountText.text = "饮料 x " + drinkAmount.ToString();
         }
     }
 
@@ -97,7 +97,24 @@ public class PickItem : MonoBehaviour
                         drinkAmount++;
                     }
                     break;
+                case "Barrett":
+                    this.GetComponent<UIManager>().itemText.text = "拾取Barrett";
+                    break;
+                case "AK47":
+                    this.GetComponent<UIManager>().itemText.text = "拾取AK47";
+                    break;
+                case "SMG":
+                    this.GetComponent<UIManager>().itemText.text = "拾取SMG";
+                    break;
+                case "M4A1":
+                    this.GetComponent<UIManager>().itemText.text = "拾取M4A1";
+                    break;
+                case "Shotgun":
+                    this.GetComponent<UIManager>().itemText.text = "拾取Shotgun";
+                    break;
+
                 case "556":
+                    this.GetComponent<UIManager>().itemText.text = "拾取5.56子弹";
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         guns[0].GetComponentInChildren<Akm>().backupBullets = 60;
@@ -118,6 +135,7 @@ public class PickItem : MonoBehaviour
         }
         else
         {
+            this.GetComponent<UIManager>().itemText.text = null;
             this.GetComponent<UIManager>().itemText.gameObject.SetActive(false);
         }
     }
@@ -130,14 +148,17 @@ public class PickItem : MonoBehaviour
         if (item == "helmet")
         {
             helmet.SetActive(true);
+            this.GetComponent<UIManager>().helemet.gameObject.SetActive(true);
         }
         else if (item == "Backpack")
         {
             backpack.SetActive(true);
+            this.GetComponent<UIManager>().backpage.gameObject.SetActive(true);
         }
         else if (item == "armor")
         {
             armor.SetActive(true);
+            this.GetComponent<UIManager>().aromor.gameObject.SetActive(true);
         }
     }
 }

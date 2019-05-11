@@ -9,23 +9,12 @@ public class Akm : MonoBehaviour
     public int bulletsAmount = 30;
     //备用子弹数
     public int backupBullets = 30;
-
-    // 0 : 开火声音 1 :卡壳声音
     public AudioClip[] scarAudioClips;
     public AudioSource scarSource;
     public Animator gunAnimator;
     public Animator gunAnimatorRemove;
     public PhotonView pv;
-
     public int ClipSize = 30;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         this.GetComponentInParent<UIManager>().bulletsAmountText.text = bulletsAmount.ToString();
@@ -80,7 +69,6 @@ public class Akm : MonoBehaviour
         }
         else if (state == 1)
         {
-
             scarSource.clip = scarAudioClips[0];
             scarSource.Play();
         }

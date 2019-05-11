@@ -18,6 +18,7 @@ public class HandsOperating : MonoBehaviour
     private bool gun2State; //判断1号位是否有枪
     private PhotonView pv;
     public Animator myAnimator;
+    public Animator hands;
     //远程玩家的枪
     public GameObject[] gunRemove;
     private float lastFired;
@@ -81,8 +82,12 @@ public class HandsOperating : MonoBehaviour
             SwitchGuns();
             AutoFireControl();
             Shoot();
-            //Aim();
+            Aim();
             OpenDoor();
+            if (Input.GetMouseButtonDown(0) || handgun1.childCount != 0 || handgun2.childCount != 0)
+            {
+                hands.SetTrigger("Hand");
+            }
         }
     }
     [PunRPC]
@@ -172,7 +177,6 @@ public class HandsOperating : MonoBehaviour
                         gun2State = true;
                     }
                 }
-
                 else if (gun1State == true && gun2State == true)
                 {
                     if (items[i].tag == handgun1.GetChild(0).gameObject.tag)
@@ -629,6 +633,7 @@ public class HandsOperating : MonoBehaviour
             }
         }
     }
+    private bool isFire;
     //开火模式
     private void AutoFireControl()
     {
@@ -650,7 +655,7 @@ public class HandsOperating : MonoBehaviour
             }
         }
     }
-    private bool isFire;
+    
     //重新装弹
     private void Reload()
     {
