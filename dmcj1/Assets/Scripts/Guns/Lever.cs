@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Lever : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class Lever : MonoBehaviour
     public AudioSource scarSource;
     public Animator gunAnimator;
     public Animator gunAnimatorRemove;
+
+    //枪口火焰
+    public GameObject muzzle;
+    //枪口火焰的位置
+    public Transform muzzlePos;
+
+    public PhotonView pv;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +48,20 @@ public class Lever : MonoBehaviour
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
             gunAnimatorRemove.SetTrigger("Shoot");
-            Debug.Log("ssss");
+            pv.RPC("ShowMuzzle", RpcTarget.AllBuffered);
         }
     }
 
+    /// <summary>
+    /// 生成枪口火花
+    /// </summary>
+    /// <param name="pos"></param>
+    [PunRPC]
+    public void ShowMuzzle()
+    {
+        muzzle.SetActive(true);
+        StartCoroutine("HideMuzzle");
+    }
     public void Reload()
     {
         if (backupBullets <= 0)
@@ -64,5 +82,10 @@ public class Lever : MonoBehaviour
         gunAnimatorRemove.SetTrigger("Reload");      
         scarSource.clip = scarAudioClips[2];
         scarSource.Play();
+    }
+    IEnumerator HideMuzzle()
+    {
+        yield return new WaitForSeconds(0.2f);
+        muzzle.SetActive(false);
     }
 }

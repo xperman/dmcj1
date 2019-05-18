@@ -21,6 +21,7 @@ TagManager:
   - akm
   - 556
   - Drink
+  - airPlane
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - Items
   - Guns
   - HandGuns
-  - 
+  - Human
   - 
   - 
   - 

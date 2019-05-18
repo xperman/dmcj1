@@ -15,6 +15,11 @@ public class Akm : MonoBehaviour
     public Animator gunAnimatorRemove;
     public PhotonView pv;
     public int ClipSize = 30;
+    //枪口火焰
+    public GameObject muzzle;
+    //枪口火焰的位置
+    public Transform muzzlePos;
+
     void Update()
     {
         this.GetComponentInParent<UIManager>().bulletsAmountText.text = bulletsAmount.ToString();
@@ -34,9 +39,11 @@ public class Akm : MonoBehaviour
             scarSource.Play();
             gunAnimator.SetTrigger("Shoot");
             gunAnimatorRemove.SetTrigger("Shoot");
+            pv.RPC("ShowMuzzle", RpcTarget.AllBuffered);
+
         }
     }
-    
+
     public void Reload()
     {
         if (backupBullets <= 0)
@@ -49,7 +56,7 @@ public class Akm : MonoBehaviour
             bulletsAmount = backupBullets;
         }
         else
-        {           
+        {
             bulletsAmount = backupBullets - (backupBullets - 30);
             backupBullets = backupBullets - 30;
 
@@ -58,7 +65,20 @@ public class Akm : MonoBehaviour
         gunAnimatorRemove.SetTrigger("Reload");
         pv.RPC("PlayAudio", RpcTarget.AllBuffered, 2);
     }
-
+    /// <summary>
+    /// 生成枪口火花
+    /// </summary>
+    /// <param name="pos"></param>
+    [PunRPC]
+    public void ShowMuzzle()
+    {
+        muzzle.SetActive(true);
+        //StartCoroutine("HideMuzzle");
+    }
+    /// <summary>
+    /// 播放枪声
+    /// </summary>
+    /// <param name="state"></param>
     [PunRPC]
     public void PlayAudio(int state)
     {
@@ -77,5 +97,10 @@ public class Akm : MonoBehaviour
             scarSource.clip = scarAudioClips[2];
             scarSource.Play();
         }
+    }
+    IEnumerator HideMuzzle()
+    {
+        yield return new WaitForSeconds(0.2f);
+        muzzle.SetActive(false);
     }
 }
