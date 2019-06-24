@@ -33,6 +33,7 @@ TagManager:
   - BackpageUI
   - HelmetUI
   - WeasponBar
+  - position
   layers:
   - Default
   - TransparentFX

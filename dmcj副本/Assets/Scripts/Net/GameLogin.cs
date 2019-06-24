@@ -94,7 +94,7 @@ public class GameLogin : MonoBehaviourPunCallbacks
     {
         roomIs = true;
         Debug.Log("成功加入了一个房间");
-        PhotonNetwork.LoadLevel(1);
+      //  PhotonNetwork.LoadLevel(1);
     }
 
     /// <summary>
